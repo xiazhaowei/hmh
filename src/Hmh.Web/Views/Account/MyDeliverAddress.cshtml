@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "收货地址管理";
+    Layout = "~/Views/Shared/_CenterLayout.cshtml";
+}
+
+<div ng-controller="hmh.account.mydeliveraddresses">
+    <div class="row">
+        <div class="col-xs-6">
+            <h3 style="margin-top:0">收货地址</h3>
+        </div>
+        <div class="col-xs-6">
+            <div class="text-right">
+                <a href="javascript:;" ng-click="add()"><i class="fa fa-plus"></i> 添加收货地址</a>
+            </div>
+        </div>
+    </div>
+    
+
+    <table class="table table-bordered table-advance text-center marg-top-10">
+        <thead>
+            <tr>
+                <th>
+                    收件人
+                </th>
+                <th>
+                    所在地区
+                </th>
+                <th>
+                    详细地址
+                </th>
+                <th>
+                    邮编
+                </th>
+                <th>
+                    手机
+                </th>
+                <th width="140">
+                    操作
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in myDeliverAddresses" ng-class="{success:item.IsDefault}">
+                <td>
+                    {{item.Name}}
+                </td>
+                <td>
+                    {{item.Region}}
+                </td>
+                <td>
+                    {{item.DetailAddress}}
+                </td>
+                <td>
+                    {{item.Zip}}
+                </td>
+                <td>
+                    {{item.Mobile}}
+                </td>
+                <td>
+                    <a href="javascript:;" ng-click="edit($index)"><span class="fa fa-edit"></span> 编辑</a> |
+                    <a href="javascript:;" ng-click="del($index)"><span class="fa fa-trash-o"></span> 删除</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+

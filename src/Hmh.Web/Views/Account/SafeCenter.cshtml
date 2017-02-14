@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "编辑资料";
+    Layout = "~/Views/Shared/_CenterLayout.cshtml";
+}
+
+<div>
+    <div class="well">
+        <h3>您的安全等级 <span class="text-lg text-green">中</span></h3>
+    </div>
+   
+    <table class="table table-hover safecenter">
+        <tr>
+            <td width="50">
+                <i class="text-green glyphicon glyphicon-ok-sign text-lg"></i>
+            </td>
+            <td>
+                登录密码
+            </td>
+            <td>
+                登录密码强度为：中
+            </td>
+            <td>
+                <a href="/Account/SelectVerifyType">修改</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <i class="text-red text-lg glyphicon glyphicon-remove-sign"></i>
+            </td>
+            <td>支付密码</td>
+            <td>
+                支付密码强度为：中
+            </td>
+            <td>
+                <a href="">设置</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <i class="text-red text-lg glyphicon glyphicon-remove-sign"></i>
+            </td>
+            <td>
+                绑定手机
+            </td>
+            <td>
+                155***5412
+            </td>
+            <td>
+                <a href="">修改</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <i class="text-green glyphicon glyphicon-ok-sign text-lg"></i>
+            </td>
+            <td>
+                绑定邮箱
+            </td>
+            <td>
+                绑定邮箱为：xiazhaowe****126.com
+            </td>
+            <td>
+                <a href="">修改</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+
+
+@section Scripts{
+    @Scripts.Render("~/usercenter")
+}

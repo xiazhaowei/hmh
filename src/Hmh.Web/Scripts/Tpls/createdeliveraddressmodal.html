@@ -1,0 +1,57 @@
+﻿<!--<script type="text/ng-template" id="account.mydeliveraddresses.createdeliveraddress">-->
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()" aria-hidden="true"></button>
+        <h4 class="modal-title">收件地址</h4>
+    </div>
+    <form name="createdeliveraddressform" role="form" class="form-horizontal" novalidate>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">收件人 <span class="text-red">*</span></label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" placeholder="收件人姓名" ng-model="deliveraddress.Name" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">手机号 <span class="text-red">*</span></label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" placeholder="联系手机" ng-model="deliveraddress.Mobile" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">选择地区 <span class="text-red">*</span></label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control wd-200" ng-model="deliveraddress.Region" hmh-citypicker required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">详细地址 <span class="text-red">*</span></label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" placeholder="详细地址精确到门牌号" ng-model="deliveraddress.DetailAddress" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">邮编 <span class="text-red">*</span></label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" placeholder="邮编" ng-model="deliveraddress.Zip" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"></label>
+                            <div class="col-md-9">
+                                <label><input type="checkbox" ng-model="deliveraddress.IsDefault">设为默认</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" ng-click="cancel()" class="btn btn-default">取消</button>
+            <button type="button" class="btn blue" ng-click="submit()" ng-disabled="createdeliveraddressform.$invalid">保存</button>
+        </div>
+    </form>
+<!--</script>-->

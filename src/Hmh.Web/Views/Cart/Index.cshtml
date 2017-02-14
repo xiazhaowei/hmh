@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "购物车";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <h3>购物车</h3>
+</div>
+
+<div class="container marg-top-25" ng-controller="hmh.cart.index">
+    <table class="table cart-table">
+        <thead>
+            <tr class="active">
+                <th class="cart-check"><label><input type="checkbox" ng-model="isCheckAll" /> 全选</label></th>
+                <th class="cart-goods"><label>商品信息</label></th>
+                <th class="cart-price"><label>单价</label></th>
+                <th class="cart-num"><label>数量</label></th>
+                <th class="cart-sum"><label>小计</label></th>
+                <th class="cart-op"><label>操作</label></th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="shop in cartGoodses">
+            <tr><td colspan="6"></td></tr>
+            <tr class="active"><td colspan="3"><label><input type="checkbox" ng-click="shopCheckAll($event,shop.Key)" /> {{shop.Key}}</label></td><td colspan="3" class="text-right"></td></tr>
+            <tr ng-class="{warning:goods.Checked}" ng-repeat="goods in shop.Goodses">
+                <td class="cart-check">
+                    <label><input type="checkbox" ng-model="goods.Checked" /></label>
+                </td>
+                <td class="cart-goods">
+                    <div class="media">
+                        <a class="media-left" href="/Home/GoodsInfo?id={{goods.GoodsId}}">
+                            <img src="http://placehold.it/100x80" alt="...">
+                        </a>
+                        <div class="media-body">
+                            <h5 class="media-heading">{{goods.Name}}</h5>
+                            <p class="text-muted">{{goods.SkuInfo}}</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="cart-price">
+                    <span class="hmh-price">￥：{{goods.Price}}</span>
+                </td>
+                <td class="cart-num">
+                    <div hmh-stepper ng-model="goods.BuyCount" max-value="20"></div>                    
+                </td>
+                <td class="cart-sum">
+                    <span class="hmh-price">￥：{{goods.Price * goods.BuyCount}}</span>
+                </td>
+                <td class="cart-op">                    
+                    <a href="javascript:;" title="删除" ng-click="del(goods)"><span class="fa fa-trash-o"></span></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="cart-sumer">
+        <div class="pd-10">
+            <label><input type="checkbox" ng-model="isCheckAll" /> 全选</label>
+            <button type="button" class="btn btn-default btn-xs marg-lf-10">删除选中</button>
+        </div>
+        <div>
+            已选 <span class="text-red"> {{getCheckCount()}} </span> 件商品 商品总价 ：<span class="text-lg text-red pd-rt-20">￥{{getCheckAmount()}}</span> <button ng-disabled="getCheckCount()==0" ng-click="confirmOrder()" class="btn green btn-lg">去结算</button>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,50 @@
+﻿<div>
+    <table>
+        <tr>
+            <td>
+                法人：
+            </td>
+            <td>
+                <span data-ng-bind="shopPermit.UserName"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                法人证件号：
+            </td>
+            <td>
+                <span data-ng-bind="shopPermit.UserCardNum"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                工商编号：
+            </td>
+            <td>
+                <span data-ng-bind="shopPermit.BusinessLicenseNum"></span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <img src="{{shopPermit.UserCardFront}}" alt="身份证正面" />
+                <img src="{{shopPermit.UserCardReverse}}" alt="身份证反面" />
+                <img src="{{shopPermit.BusinessLicensePic}}" alt="营业执照照片" />
+            </td>
+        </tr>
+    </table>
+    <hr />
+    <div>
+        <p>请根据以上资料判定店铺的资料状态：{{shopPermit.State}}</p>
+        资料审核状态：
+        <select data-ng-model="shopPermit.State" data-ng-change="stateChange()">
+            <option data-ng-repeat="item in shoppermitstate" value="{{item.value}}">{{item.name}}</option>
+        </select>
+    </div>
+    <div>
+        <textarea data-ng-show="isShowErrorMessage" class="form-control" data-ng-model="shopPermit.ErrorMessage" placeholder="审核未通过原因">
+
+        </textarea>
+    </div>
+</div>
+
+

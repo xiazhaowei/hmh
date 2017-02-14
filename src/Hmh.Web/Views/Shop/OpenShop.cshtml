@@ -1,0 +1,30 @@
+﻿@model Hmh.Web.ViewModels.OpenShopViewModel
+@using Hmh.Core.Shop.Models
+
+@{
+    ViewBag.Title = "我要开店";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    @if (Model.Shop != null)
+    {
+
+        if (Model.ErrorList.Count > 0)
+        {
+            foreach(string err in Model.ErrorList)
+            {
+                @err
+            }
+        }
+    }
+    else
+    {
+        <h2>您还没有开店</h2>
+        <a href="/shop/createshop" class="btn btn-lg green"><i class="fa fa-shopping-cart"></i> 现在去开店</a>
+    }
+
+
+</div>
+
+

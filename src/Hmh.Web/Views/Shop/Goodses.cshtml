@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "商品管理";
+    Layout = "~/Views/Shared/_ShopCenterLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xs-6">
+        <h3 style="margin-top:0">商品管理</h3>
+    </div>
+    <div class="col-xs-6">
+        <div class="text-right">
+            <a href="/Shop/Publish">+ 添加商品</a>
+        </div>
+    </div>
+</div>
+
+<div ng-controller="hmh.shop.goodses">
+    <table class="table table-hover table-bordered table-advance">
+        <thead>
+            <tr>
+                <th width="100">商品主图</th>
+                <th>商品名称</th>
+                <th>价格</th>
+                <th>库存</th>
+                <th>销量</th>
+                <th>发布日期</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="goods in goodses">
+                <td><img src="http://placehold.it/80x80" /></td>
+                <td>{{goods.Name}}</td>
+                <td>￥{{goods.Price}}</td>
+                <td>{{goods.Stock}}</td>
+                <td>0</td>
+                <td>{{goods.CreatedTime}}</td>
+                <td class="text-center">
+                    <a href="javascript:;" ng-click="del(goods.Id)"><span class="fa fa-edit"></span> 编辑</a>
+                    <a href="javascript:;" ng-click="del(goods.Id)"><span class="fa fa-trash-o"></span>删除</a>
+                </td>
+            </tr>
+        </tbody>
+        
+    </table>
+    <hmh-pagination conf="paginationConf"></hmh-pagination>
+</div>

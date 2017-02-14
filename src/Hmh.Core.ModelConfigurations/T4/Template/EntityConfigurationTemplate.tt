@@ -1,0 +1,63 @@
+﻿<#+
+public class EntityConfigurationTemplate : CSharpTemplate
+{
+    private T4ModelInfo _model;
+	private string _mainNameSpace;
+
+    public EntityConfigurationTemplate(T4ModelInfo model, string mainNameSpace)
+    {
+        _model = model;
+		_mainNameSpace = mainNameSpace;
+    }
+
+    public string FileName
+    {
+        get{ return string.Format("{0}Configuration.generated.cs", _model.Name); }
+    }
+
+	public override string TransformText()
+	{
+		base.TransformText();
+#>
+// -----------------------------------------------------------------------
+//  <copyright file="<#= _model.Name #>Configuration.generated.cs" company="OSharp开源团队">
+//      Copyright (c) 2015 OSHARP. All rights reserved.
+//  </copyright>
+//  <site>http://www.osharp.org</site>
+//  <last-editor>郭明锋</last-editor>
+//  <last-date><#= DateTime.Now.ToString("yyyy-MM-dd HH:mm") #></last-date>
+// -----------------------------------------------------------------------
+
+using System;
+
+using OSharp.Data.Entity;
+
+using <#= _mainNameSpace #><#= "." + _model.ModuleName #>.Models;
+
+
+namespace <#= _mainNameSpace #>.ModelConfigurations<#= "." + _model.ModuleName #>
+{
+    /// <summary>
+    /// 实体类-数据表映射——<#= _model.Description #>
+    /// </summary> 
+	public partial class <#= _model.Name #>Configuration : EntityConfigurationBase<<#= _model.Name #>, <#= _model.KeyType == null || _model.KeyType == typeof(int) ? "int" : _model.KeyType.Name #>>
+    { 
+        /// <summary>
+        /// 初始化一个<see cref="<#= _model.Name #>Configuration"/>类型的新实例
+        /// </summary>
+        public <#= _model.Name #>Configuration()
+        {
+            <#= _model.Name #>ConfigurationAppend();
+        }
+
+        /// <summary>
+        /// 额外的数据映射
+        /// </summary>
+        partial void <#= _model.Name #>ConfigurationAppend();
+    }
+}
+<#+
+        return this.GenerationEnvironment.ToString();
+	}
+}
+#>

@@ -1,0 +1,199 @@
+﻿
+@{
+    ViewBag.Title = "发布宝贝";
+    Layout = "~/Views/Shared/_ShopCenterLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xs-6">
+        <h3 style="margin-top:0">添加/编辑商品</h3>
+    </div>
+    <div class="col-xs-6">
+        <div class="text-right">
+            <a href="/Shop/Publish">重新选择分类</a>
+        </div>
+    </div>
+</div>
+
+<div class="bd pd-15">
+    <form role="form" name="createGoodsForm" data-ng-controller="hmh.shop.creategoods" class="form-horizontal" novalidate ng-submit="postgoods(goodsInfo)">
+        <div class="form-body">
+            <div class="form-group">
+                <label class="col-xs-2 control-label">宝贝标题 <span class="text-red">*</span></label>
+                <div class="col-xs-10">
+                    <input type="text" class="form-control" placeholder="60字内" data-ng-model="goodsInfo.Name" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-2 control-label">宝贝买点</label>
+                <div class="col-xs-10">
+                    <textarea cols="3" rows="3" class="form-control" placeholder="150字内" data-ng-model="goodsInfo.Description"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-2 control-label">宝贝属性 <span class="text-red">*</span></label>
+                <div class="col-xs-10">
+                    <div class="bg-lightgray pd-15">
+                        <p>错误填写宝贝属性，可能会引起宝贝下降或搜索流量渐少，影响您的正常销售，请认真准确填写~</p>
+                        <div class="row">
+                            <div class="col-xs-6 marg-top-10" ng-repeat="goodsAttr in goodsInfo.GoodsAttrs">
+                                <label class="col-xs-3">{{goodsAttr.AttrName}}<span ng-if="goodsAttr.IsMust" class="text-red">*</span></label>
+                                <div class="col-xs-9">
+                                    <div ng-show="goodsAttr.Type==0">
+                                        <!--单选-->
+                                        <select class="form-control" ng-model="goodsAttr.AttrValue">
+                                            <option ng-repeat="selectvalue in goodsAttr.SelectableValues">{{selectvalue}}</option>
+                                        </select>
+                                    </div>
+                                    <div ng-show="goodsAttr.Type==1">
+                                        <!--多选-->
+                                        <div select-list="{{goodsAttr.SelectableValues}}" ng-model="goodsAttr.AttrValue" hmh-multiselectdroplist></div>
+                                    </div>
+                                    <div ng-show="goodsAttr.Type==2">
+                                        <!--输入-->
+                                        <input type="text" class="form-control" ng-model="goodsAttr.AttrValue" />
+                                    </div>
+                                    <div ng-show="goodsAttr.Type==3">
+                                        <!--选输-->
+                                        <select class="form-control" ng-model="goodsAttr.AttrValue" placeholder="可直接输入" hmh-editableselect>
+                                            <option ng-repeat="selectvalue in goodsAttr.SelectableValues">{{selectvalue}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">宝贝图片</label>
+                <div class="col-xs-10">
+                    <div>
+                        <p>宝贝主图大小不能超过3MB；700*700 以上图片上传后宝贝详情页自动提供放大镜功能</p>
+                         <span ng-model="goodsInfo.Pic1" hmh-picspace></span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">宝贝规格</label>
+                <div class="col-xs-10">
+                    <div class="bg-lightgray pd-15">
+
+                        <div ng-repeat="goodsspec in goodsSpecifications">
+                            <p><strong>{{goodsspec.Name}}</strong></p>
+                            <p>
+                                <span ng-init="goodsspecid=$index" style="display: none;"></span>
+                                <span ng-repeat="selectvalue in goodsspec.SelectableValues">
+                                    <label>
+                                        <input type="checkbox" ng-checked="isChecked(goodsspec.Name,goodsspecid,selectvalue)"
+                                               ng-click="updateSelection($event,goodsspec.Name,goodsspecid,selectvalue)" />{{selectvalue}}
+                                    </label>
+                                </span>
+                            </p>
+                        </div>
+                        <p>
+                            该类目下规格，请全选或全不选，如果只选一部分则无法保存对应的价格和库存
+                        </p>
+
+                        <div ng-if="isCreateGoodsSpecTable" class="pd-topbtn-10">
+                            批量填充：
+                            <input type="number" ng-model="skudata.Price" placeholder="价格" />
+                            <input type="number" ng-model="skudata.Stock" placeholder="数量" />
+                            <input type="text" ng-model="skudata.GoodsNumber" placeholder="商品编码" />
+                            <input type="text" ng-model="skudata.BarCode" placeholder="条形码" />
+                            <button type="button" ng-click="groupAddGoodsSpec()" class="btn btn-xs btn-default">确定</button>
+                        </div>
+                        <table ng-if="isCreateGoodsSpecTable" class="table table-bordered table-condensed">
+                            <tr class="active">
+                                <td ng-repeat="specName in names" class="wd-150">{{specName}}<span class="text-red">*</span></td>
+                                <td>价格<span class="text-red">*</span></td>
+                                <td>库存<span class="text-red">*</span></td>
+                                <td>商家编码</td>
+                                <td>商品条形码</td>
+                            </tr>
+                            <tr ng-repeat="row in goodsInfo.Skus">
+                                <td ng-init="trMark=$index" style="display:none"></td>
+                                <td ng-show="{{rowShow(trMark,tdrowspan[$index])}}" rowspan="{{rowSpan(trMark,tdrowspan[$index])}}" ng-repeat="col in row.values">{{col}}</td>
+                                <td><input ng-model="row.Price" ng-change="skuPriceValueChange(row.Price)" type="number" class="no-border wd-100" /></td>
+                                <td><input ng-model="row.Stock" ng-change="skuStockValueChange(row.Stock)" type="number" class="no-border wd-100" /></td>
+                                <td><input type="text" ng-model="row.GoodsNumber" class="no-border wd-100" /></td>
+                                <td><input type="text" ng-model="row.BarCode" class="no-border wd-100" /></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">一口价及总库存 <span class="text-red">*</span></label>
+                <div class="col-xs-10">
+                    <table class="table table-bordered table-condensed">
+                        <tr class="active">
+                            <td>价格（元）</td>
+                            <td>总数量</td>
+                            <td>商家编码</td>
+                            <td>商品条形码</td>
+                        </tr>
+                        <tr>
+                            <td><input type="number" class="no-border" data-ng-model="goodsInfo.Price" required/></td>
+                            <td><input type="number" class="no-border" ng-readonly="!isStockEnable" data-ng-model="goodsInfo.Stock" required/></td>
+                            <td><input type="text" class="no-border" data-ng-model="goodsInfo.GoodsNumber" /></td>
+                            <td><input type="text" class="no-border" data-ng-model="goodsInfo.BarCode" /></td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">宝贝描述</label>
+                <div class="col-xs-10">
+                    <textarea class="form-control" style="height:340px" data-ng-model="goodsInfo.Detail"></textarea>
+                </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label class="control-label col-xs-2">运费模板 <span class="text-red">*</span></label>
+                <div class="col-xs-10">
+                    <select class="wd-200" ng-model="goodsInfo.ExpressTemplateId" required>
+                        <option ng-repeat="item in expressTemplates" value="{{item.Id}}">{{item.Name}}</option>
+                    </select>
+                    <a href="/shop/createexpresstemplate" target="_blank">+ 新建运费模板</a>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">售后服务</label>
+                <div class="col-xs-10">
+                    <div><label><input type="checkbox" ng-model="goodsInfo.IsReceipt" />提供发票</label></div>
+                    <div><label><input type="checkbox" ng-model="goodsInfo.IsGuarantee"/>保修服务</label></div>
+                    <div><label><input type="checkbox" ng-model="goodsInfo.IsReplacement"/>退换货承诺 <span class="text-muted">(若存在质量问题或与描述不符，本店将主动提供退换货服务并承担来回邮费)</span></label></div>
+                    <div><label><input type="checkbox" ng-model="goodsInfo.IsSevenDayReplacement"/>服务承诺 <span class="text-muted">(该类商品，必须支持【七天退货】服务，承诺更好服务)</span></label></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">开始时间</label>
+                <div class="col-xs-10">
+                    <div>
+                        <label><input type="radio" name="isbegintime" ng-model="isShowBeginTime" data-ng-value="false" />立即上架</label>  
+                        <label><input type="radio" name="isbegintime" ng-model="isShowBeginTime" data-ng-value="true" />定时上架</label>
+                    </div>
+                    <div><input type="text" class="form-control wd-250" placeholder="选择上架时间" readonly ng-model="goodsInfo.BeginTime" ng-show="isShowBeginTime" hmh-datepicker/></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">橱窗推荐</label>
+                <div class="col-xs-10">
+                    <div><label><input type="checkbox" ng-model="goodsInfo.IsCommend" />推荐</label></div>                   
+                </div>
+            </div>
+        </div>
+        {{goodsInfo}}
+        <div class="form-actions fluid">
+            <div class="col-xs-offset-2 col-md-10">
+                <button type="submit" class="btn blue" ng-disabled="createGoodsForm.$invalid">发布宝贝</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+

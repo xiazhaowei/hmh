@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewBag.Title = "编辑运费模板";
+    Layout = "~/Views/Shared/_ShopCenterLayout.cshtml";
+}
+<div class="bd pd-15">
+    <form name="expressTemplateForm" role="form" class="form-horizontal form-row-seperated" ng-controller="hmh.shop.createexpresstemplate" ng-submit="postExpressTemplate(expressTemplateInfo)" novalidate>
+        <div class="form-body">
+            <div class="form-group">
+                <label class="control-label col-xs-2">模板名称</label>
+                <div class="col-xs-3">
+                    <input type="text" name="Name" ng-model="expressTemplateInfo.Name" class="form-control" required />
+                    <p class="text-red" ng-show="expressTemplateForm.Name.$error.required && !expressTemplateForm.Name.$pristine">请输入模板名称</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">宝贝地址</label>
+                <div class="col-xs-5">
+                    <input class="form-control" type="text" name="DeliverAddress" ng-model="expressTemplateInfo.DeliverAddress" hmh-citypicker required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">发货时间</label>
+                <div class="col-xs-9">
+                    <select value="" class="form-control wd-200" ng-model="expressTemplateInfo.DeliverTime" required>
+                        <option value="4小时内">4小时内</option>
+                        <option value="8小时内">8小时内</option>
+                        <option value="12小时内">12小时内</option>
+                        <option value="16小时内">16小时内</option>
+                        <option value="20小时内">20小时内</option>
+                        <option value="1天内">1天内</option>
+                        <option value="2天内">2天内</option>
+                        <option value="3天内">3天内</option>
+                        <option value="5天内">5天内</option>
+                        <option value="7天内">7天内</option>
+                        <option value="8天内">8天内</option>
+                        <option value="10天内">10天内</option>
+                        <option value="12天内">12天内</option>
+                        <option value="15天内">15天内</option>
+                        <option value="17天内">17天内</option>
+                        <option value="20天内">20天内</option>
+                        <option value="25天内">25天内</option>
+                        <option value="30天内">30天内</option>
+                        <option value="35天内">35天内</option>
+                        <option value="45天内">45天内</option>
+                    </select>
+                    <span class="help-block">如实设定宝贝的发货时间，不仅可避免发货咨询和纠纷，还能促进成交！</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">是否包邮</label>
+                <div class="col-xs-10">
+                    <div>
+                        <label><input type="radio" name="IsFree" ng-model="expressTemplateInfo.IsFree" data-ng-value="false" />自定义运费</label>
+                        <label><input type="radio" name="IsFree" ng-model="expressTemplateInfo.IsFree" data-ng-value="true" />卖家承担运费</label>
+                    </div>
+                    <div class="pd-15 bg-lightgray" ng-if="!expressTemplateInfo.IsFree">
+                        <p>除指定地区外，其余地区的运费采用“默认运费”</p>
+                        <p>
+                            默认运费：
+                            <input type="number" class="wd-100" ng-model="expressTemplateInfo.Count" /> 件内，
+                            <input type="number" class="wd-100" ng-model="expressTemplateInfo.Price" /> 元，每增加
+                            <input type="number" class="wd-100" ng-model="expressTemplateInfo.CountAdd" /> 件，增加运费
+                            <input type="number" class="wd-100" ng-model="expressTemplateInfo.PriceAdd" /> 元
+                        </p>
+
+                        <table class="table table-condensed table-bordered text-center">
+                            <thead ng-if="expressTemplateInfo.SpecialExpressAddresses.length">
+                                <tr>
+                                    <td>运送到</td>
+                                    <td>首件</td>
+                                    <td>首费(元)</td>
+                                    <td>续件</td>
+                                    <td>续费(元)</td>
+                                    <td>操作</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="specialExpressAddress in expressTemplateInfo.SpecialExpressAddresses">
+                                    <td class="text-left">
+                                        <input type="text" name="spec{{$index}}" value="" class="form-control wd-200" ng-model="specialExpressAddress.Address" hmh-citypicker required />
+                                        <p class="text-red" ng-show="expressTemplateForm.spec{{$index}}.$error.required && !expressTemplateForm.spec{{$index}}.$pristine">未选择任何地区</p>
+                                    </td>
+                                    <td><input type="number" value="" class="wd-100" ng-model="specialExpressAddress.Count" /></td>
+                                    <td><input type="number" value="" class="wd-100" ng-model="specialExpressAddress.Price" /></td>
+                                    <td><input type="number" value="" class="wd-100" ng-model="specialExpressAddress.CountAdd" /></td>
+                                    <td><input type="number" value="" class="wd-100" ng-model="specialExpressAddress.PriceAdd" /></td>
+                                    <td><a href="javascript:;" ng-click="delSpecialExpressAddress(specialExpressAddress)" title="删除"><span class="fa fa-trash-o"></span></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <a href="javascript:;" ng-click="addSpecialExpressAddress()">+ 为指定地区城市设置运费</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pd-top-20">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-offset-2 col-md-9">
+                        <button type="submit" class="btn green" ng-disabled="expressTemplateForm.$invalid"><i class="fa fa-pencil"></i> 保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

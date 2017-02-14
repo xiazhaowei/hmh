@@ -1,0 +1,14 @@
+﻿[
+  {
+    "outputFile": "Content/assets/css/custom.css",
+    "inputFile": "Content/assets/css/custom.less"
+  },
+  {
+    "outputFile": "Scripts/widget/Directives/hmhStepper/hmhstepper.css",
+    "inputFile": "Scripts/widget/Directives/hmhStepper/hmhstepper.less"
+  },
+  {
+    "outputFile": "Scripts/plugins/jquery/jquery-multiselectdroplist/MultiSelectDropList.css",
+    "inputFile": "Scripts/plugins/jquery/jquery-multiselectdroplist/MultiSelectDropList.less"
+  }
+]

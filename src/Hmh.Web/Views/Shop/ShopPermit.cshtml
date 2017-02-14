@@ -1,0 +1,214 @@
+﻿@model Hmh.Core.Shop.Dtos.ShopPermitInputDto
+@{
+    ViewBag.Title = "店铺认证资料";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h3>为账户<strong class="text-green">@User.Identity.Name </strong>创建一个店铺</h3>
+    <h4>@ViewBag.MyAccount.User.Shop.Name</h4>
+    <div class="row  marg-top-60">
+        <div class="col-xs-3">
+            <div class="well well-sm bg-lightgreen">
+                <div class="media">
+                    <a class="media-left" href="#">
+                        <span class="fa fa-check fa-2x text-green"></span>
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">第一步</h4>
+                        填写店铺基本资料
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="well well-sm bg-green">
+                <div class="media">
+                    <a class="media-left" href="#">
+                        <span class="fa fa-credit-card text-lg  text-white"></span>
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">第二步</h4>
+                        上传认证资料
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="well well-sm">
+                <div class="media">
+                    <a class="media-left" href="#">
+                        <span class="fa fa-building-o text-muted text-lg"></span>
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">第三步</h4>
+                        选择保本合同类型
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="well well-sm">
+                <div class="media">
+                    <a class="media-left" href="#">
+                        <span class="fa fa-external-link-square text-muted text-lg"></span>
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">第四步</h4>
+                        在线付款
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-8">
+            <h3>店铺认证资料</h3>
+            <form role="form" name="shopPermitForm" ng-controller="hmh.shop.shoppermint" novalidate>
+                <div class="form-group">
+                    <label class="control-label">法人名称</label>
+                    <input type="text" ng-model="shopPermit.UserName" class="form-control" required />
+                    <p class="help-block">法人姓名，请填写营业执照上登记的法人姓名，没有营业执照，请填写企业负责人姓名</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">法人证件号码</label>
+                    <input type="text" ng-model="shopPermit.UserCardNum" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <div>
+                                <label class="control-label">身份证正面</label>
+                            </div>
+
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                    <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=身份证图片" alt="" />
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;">
+                                </div>
+                                <div>
+                                    <span class="btn default btn-file">
+                                        <span class="fileinput-new">
+                                            选择图片
+                                        </span>
+                                        <span class="fileinput-exists">
+                                            重选
+                                        </span>
+                                        <input type="file" ng-model="shopPermit.UserCardFront" />
+                                    </span>
+                                    <a href="#" class="btn default fileinput-exists" data-dismiss="fileinput">
+                                        移除
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div>
+                                <label class="control-label">身份证反面</label>
+                            </div>
+
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                    <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=身份证图片" alt="" />
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;">
+                                </div>
+                                <div>
+                                    <span class="btn default btn-file">
+                                        <span class="fileinput-new">
+                                            选择图片
+                                        </span>
+                                        <span class="fileinput-exists">
+                                            重选
+                                        </span>
+                                        <input type="file" ng-model="shopPermit.UserCardReverse" />
+                                    </span>
+                                    <a href="#" class="btn default fileinput-exists" data-dismiss="fileinput">
+                                        移除
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            示例图片
+                            <div class="clearfix margin-top-10">
+                                <span class="label label-danger">
+                                    提示!
+                                </span>
+                                身份证正面照片，图片不得大于2M
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">营业执照编号</label>
+                    <input type="text" ng-model="shopPermit.BusinessLicenseNum" class="form-control" required />
+                    <p class="help-block">营业执照编号</p>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div>
+                                <label class="control-label">证件照片</label>
+                            </div>
+
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                    <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;">
+                                </div>
+                                <div>
+                                    <span class="btn default btn-file">
+                                        <span class="fileinput-new">
+                                            选择图片
+                                        </span>
+                                        <span class="fileinput-exists">
+                                            重选
+                                        </span>
+                                        <input type="file" ng-model="shopPermit.BusinessLicensePic" />
+                                    </span>
+                                    <a href="#" class="btn default fileinput-exists" data-dismiss="fileinput">
+                                        移除
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            示例图片
+                            <div class="clearfix margin-top-10">
+                                <span class="label label-danger">
+                                    提示!
+                                </span>
+                                身份证正面照片，图片不得大于2M
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn green" ng-disabled="shopPermitForm.$invalid" ng-click="submitShopPermit(shopPermit)">下一步</button>
+                </div>               
+            </form> 
+        </div>
+        <div class="col-xs-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">为什么要加盟惠民汇</div>
+                <div class="panel-body">
+
+                    <h4><span class="glyphicon glyphicon-ok text-success"></span> 签订保本协议</h4>
+                    <p>任何加盟店铺，公司都会签订具有法律效益的保本合同，合同期间您的</p>
+                    <h4><span class="glyphicon glyphicon-ok text-success"></span> 巨量消费人群</h4>
+                    <p>商城包含巨量持有H币的消费人群，引爆您的销售</p>
+                    <h4><span class="glyphicon glyphicon-ok text-success"></span> 更多推广奖励</h4>
+                    <p>拥有一个店铺，可以享受更高的推广奖励，成就您的财富梦</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

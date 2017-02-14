@@ -1,0 +1,15 @@
+﻿<li>
+    <ul class="list-inline">
+        <li>
+            <div class="input-group">
+                <input type="checkbox" id="role-{{role.Name}}" class="md-check" ng-model="role.IsChecked" />
+                <label for="role-{{role.Name}}">
+                    <span></span>
+                    <span class="check"></span>
+                    <span class="box"></span> {{role.Name}}
+                </label>
+            </div>
+        </li>
+        <li ng-transclude></li>
+    </ul>
+</li>

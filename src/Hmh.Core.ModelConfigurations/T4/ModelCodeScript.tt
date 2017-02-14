@@ -1,0 +1,55 @@
+﻿<#@ template language="C#" debug="True" #>
+<#@ output extension="cs" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.ComponentModel.DataAnnotations" #>
+<#@ assembly name="$(SolutionDir)src\Hmh.Core.ModelConfigurations\bin\Debug\OSharp.Utility.dll" #>
+<#@ assembly name="$(SolutionDir)src\Hmh.Core.ModelConfigurations\bin\Debug\OSharp.Core.dll" #>
+<#@ assembly name="$(SolutionDir)src\Hmh.Core.ModelConfigurations\bin\Debug\OSharp.Data.Entity.dll" #>
+<#@ assembly name="$(SolutionDir)src\Hmh.Core.ModelConfigurations\bin\Debug\OSharp.Permissions.dll" #>
+<#@ assembly name="$(SolutionDir)src\Hmh.Core.ModelConfigurations\bin\Debug\OSharp.Permissions.OAuth.dll" #>
+<#@ assembly name="$(SolutionDir)src\Hmh.Core.ModelConfigurations\bin\Debug\Microsoft.AspNet.Identity.Owin.dll" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.ComponentModel.DataAnnotations" #>
+<#@ import namespace="OSharp.Utility.Extensions" #>
+<#@ import namespace="OSharp.Utility.Develop.T4" #>
+<#@ import namespace="OSharp.Core.Data" #>
+<#@ include file="T4Toolbox.tt" #>
+<#@ include file="Template\EntityConfigurationTemplate.tt" #>
+<#
+    string currentPath = Path.GetDirectoryName(Host.TemplateFile);
+    string projectPath = currentPath.Substring(0, currentPath.IndexOf(@"\T4"));
+    string solutionPath = currentPath.Substring(0, currentPath.IndexOf(@"\src\Hmh.Core.ModelConfigurations"));
+    string modelFile = Path.Combine(projectPath, @"bin\Debug\Hmh.Core.dll");
+    byte[] fileData = File.ReadAllBytes(modelFile);
+    Assembly assembly = Assembly.Load(fileData);
+    Type baseType = typeof(EntityBase<>);
+    List<Type> modelTypes = null;
+	try
+	{
+		modelTypes = assembly.GetTypes().Where(m => baseType.IsGenericAssignableFrom(m) && !m.IsAbstract).ToList();
+	} 
+	catch(ReflectionTypeLoadException e)
+	{
+		foreach(var ex in e.LoaderExceptions)
+		{
+	#>
+<#= ex #>
+	<#
+		}
+	}
+	string mainNameSpace = "Hmh.Core";
+    foreach(Type modelType in modelTypes)
+    {
+        T4ModelInfo model = new T4ModelInfo(modelType, "(?<=Hmh.Core.).*(?=.Models)");
+        //实体映射类
+        EntityConfigurationTemplate config = new EntityConfigurationTemplate(model, mainNameSpace);
+        string path = string.Format(@"{0}\{1}", projectPath, model.ModuleName);
+        config.Output.Encoding = Encoding.UTF8;
+        config.RenderToFile(Path.Combine(path, config.FileName));
+    }
+    
+ #>

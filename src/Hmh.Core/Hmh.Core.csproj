@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5EC93AF5-9A8D-4D7D-B54D-84F79608CEEA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Hmh.Core</RootNamespace>
+    <AssemblyName>Hmh.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OSharp.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=e7429fb96767d50d, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\OSharp.Core.3.5.0-beta05\lib\net45\OSharp.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OSharp.Permissions, Version=3.0.0.0, Culture=neutral, PublicKeyToken=e7429fb96767d50d, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\OSharp.Permissions.3.5.0-beta05\lib\net45\OSharp.Permissions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OSharp.Permissions.OAuth, Version=3.0.0.0, Culture=neutral, PublicKeyToken=e7429fb96767d50d, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\OSharp.Permissions.OAuth.3.5.0-beta05\lib\net45\OSharp.Permissions.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OSharp.Utility, Version=3.0.0.0, Culture=neutral, PublicKeyToken=e7429fb96767d50d, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\OSharp.Utility.3.5.0-beta05\lib\net40\OSharp.Utility.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Extensions\IntExtension.cs" />
+    <Compile Include="Goods\Dtos\GoodsColorSpecificationItemInputDto.cs" />
+    <Compile Include="Goods\Dtos\GoodsCommentInputDto.cs" />
+    <Compile Include="Goods\Dtos\SkuInputDto.cs" />
+    <Compile Include="Goods\Dtos\GoodsSpecificationInputDto.cs" />
+    <Compile Include="Goods\Dtos\AttrInputDto.cs" />
+    <Compile Include="Goods\Dtos\ShowCategoryInputDto.cs" />
+    <Compile Include="Goods\Dtos\CategoryInputDto.cs" />
+    <Compile Include="Goods\Dtos\GoodsInputDto.cs" />
+    <Compile Include="Goods\GoodsService.GoodsComment.cs" />
+    <Compile Include="Goods\GoodsService.GoodsColorSpecificationItem.cs" />
+    <Compile Include="Goods\GoodsService.GoodsSpecification.cs" />
+    <Compile Include="Goods\GoodsService.Attr.cs" />
+    <Compile Include="Goods\GoodsService.ShowCategory.cs" />
+    <Compile Include="Goods\GoodsService.Category.cs" />
+    <Compile Include="Goods\IGoodsContract.cs" />
+    <Compile Include="Goods\Models\GoodsComment.cs" />
+    <Compile Include="Goods\Models\SearchKey.cs" />
+    <Compile Include="Goods\Models\GoodsColorSpecificationItem.cs" />
+    <Compile Include="Goods\Models\Attr.cs" />
+    <Compile Include="Goods\Models\GoodsAttr.cs" />
+    <Compile Include="Goods\GoodsService.cs" />
+    <Compile Include="Goods\GoodsService.Goods.cs" />
+    <Compile Include="Identity\Dtos\CollectInputDto.cs" />
+    <Compile Include="Identity\Dtos\UserBankCardInputDto.cs" />
+    <Compile Include="Identity\Dtos\DeliverAddressInputDto.cs" />
+    <Compile Include="Identity\Dtos\UserExtendInputDto.cs" />
+    <Compile Include="Identity\Dtos\TransactionInfo.cs" />
+    <Compile Include="Identity\Dtos\WidthdrawInfo.cs" />
+    <Compile Include="Identity\IdentityService.HCoinTransaction.cs" />
+    <Compile Include="Identity\IdentityService.RmbCoinTransaction.cs" />
+    <Compile Include="Identity\IdentityService.Collect.cs" />
+    <Compile Include="Identity\IdentityService.UserBankCard.cs" />
+    <Compile Include="Identity\IdentityService.DeliverAddress.cs" />
+    <Compile Include="Identity\Models\Collect.cs" />
+    <Compile Include="Order\Dtos\OrderInputDto.cs" />
+    <Compile Include="Order\Dtos\OrderGoodsInputDto.cs" />
+    <Compile Include="Order\Dtos\CartGoodsInputDto.cs" />
+    <Compile Include="Order\OrderService.Order.cs" />
+    <Compile Include="Order\OrderService.CartGoods.cs" />
+    <Compile Include="Order\OrderService.cs" />
+    <Compile Include="Order\IOrderContract.cs" />
+    <Compile Include="Order\Models\CartGoods.cs" />
+    <Compile Include="Order\Models\Order.cs" />
+    <Compile Include="Order\Models\OrderExpress.cs" />
+    <Compile Include="Order\Models\OrderGoods.cs" />
+    <Compile Include="Settings\Dtos\UserDistributionLevelInputDto.cs" />
+    <Compile Include="Settings\Dtos\ShopDistributionLevelInputDto.cs" />
+    <Compile Include="Settings\Dtos\SystemSettingInputDto.cs" />
+    <Compile Include="Settings\ISettingsContract.cs" />
+    <Compile Include="Settings\Models\ShopDistributionLevel.cs" />
+    <Compile Include="Settings\Models\SystemSetting.cs" />
+    <Compile Include="Settings\Models\UserDistributionLevel.cs" />
+    <Compile Include="Settings\SettingsService.cs" />
+    <Compile Include="Settings\ShopService.UserDistribution.cs" />
+    <Compile Include="Settings\ShopService.ShopDistribution.cs" />
+    <Compile Include="Settings\ShopService.SystemSetting.cs" />
+    <Compile Include="Shop\Dtos\ExpressTemplateDto.cs" />
+    <Compile Include="Shop\Models\Album.cs" />
+    <Compile Include="Goods\Models\ShowCategory.cs" />
+    <Compile Include="Goods\Models\Category.cs" />
+    <Compile Include="Goods\Models\Goods.cs" />
+    <Compile Include="Goods\Models\GoodsSpecification.cs" />
+    <Compile Include="Goods\Models\Sku.cs" />
+    <Compile Include="Identity\ClaimsIdentityFactory.cs" />
+    <Compile Include="Identity\Dtos\LoginInfo.cs" />
+    <Compile Include="Identity\Dtos\RoleInputDto.cs" />
+    <Compile Include="Identity\Dtos\UserInputDto.cs" />
+    <Compile Include="Identity\Dtos\UserRoleMapInputDto.cs" />
+    <Compile Include="Identity\IdentityService.cs" />
+    <Compile Include="Identity\IdentityService.Role.cs" />
+    <Compile Include="Identity\IdentityService.User.cs" />
+    <Compile Include="Identity\IIdentityContract.cs" />
+    <Compile Include="Identity\Models\DeliverAddress.cs" />
+    <Compile Include="Identity\Models\Role.cs" />
+    <Compile Include="Identity\Models\User.cs" />
+    <Compile Include="Identity\Models\UserBankCard.cs" />
+    <Compile Include="Identity\Models\UserClaim.cs" />
+    <Compile Include="Identity\Models\UserExtend.cs" />
+    <Compile Include="Identity\Models\UserLogin.cs" />
+    <Compile Include="Identity\Models\UserRoleMap.cs" />
+    <Compile Include="Identity\RoleManager.cs" />
+    <Compile Include="Identity\RoleStore.cs" />
+    <Compile Include="Identity\SignInManager.cs" />
+    <Compile Include="Identity\UserManager.cs" />
+    <Compile Include="Identity\UserStore.cs" />
+    <Compile Include="Identity\UserValidator.cs" />
+    <Compile Include="OAuth\Dtos\OAuthClientInputDto.cs" />
+    <Compile Include="OAuth\Dtos\OAuthClientSecretInputDto.cs" />
+    <Compile Include="OAuth\Models\OAuthClient.cs" />
+    <Compile Include="OAuth\Models\OAuthClientRefreshToken.cs" />
+    <Compile Include="OAuth\Models\OAuthClientSecret.cs" />
+    <Compile Include="OAuth\OAuthClientRefreshTokenStore.cs" />
+    <Compile Include="OAuth\OAuthClientStore.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\Dtos\EntityInfoInputDto.cs" />
+    <Compile Include="Security\Dtos\EntityRoleMapInputDto.cs" />
+    <Compile Include="Security\Dtos\EntityUserMapInputDto.cs" />
+    <Compile Include="Security\Dtos\FunctionInputDto.cs" />
+    <Compile Include="Security\Dtos\FunctionNode.cs" />
+    <Compile Include="Security\Dtos\FunctionUserMapInputDto.cs" />
+    <Compile Include="Security\Dtos\ModuleInputDto.cs" />
+    <Compile Include="Security\ISecurityContract.cs" />
+    <Compile Include="Security\Models\EntityRoleMap.cs" />
+    <Compile Include="Security\Models\EntityUserMap.cs" />
+    <Compile Include="Security\Models\FunctionUserMap.cs" />
+    <Compile Include="Security\Models\Module.cs" />
+    <Compile Include="Security\SecurityManager.cs" />
+    <Compile Include="Security\SecurityService.cs" />
+    <Compile Include="Security\SecurityService.EntityInfo.cs" />
+    <Compile Include="Security\SecurityService.EntityInfoUserMap.cs" />
+    <Compile Include="Security\SecurityService.Function.cs" />
+    <Compile Include="Shop\Dtos\ContractInputDto.cs" />
+    <Compile Include="Shop\Dtos\ContractLevelInputDto.cs" />
+    <Compile Include="Shop\Dtos\ContractPayInputDto.cs" />
+    <Compile Include="Shop\Dtos\RegionInputDto.cs" />
+    <Compile Include="Shop\Dtos\ShopPermitInputDto.cs" />
+    <Compile Include="Shop\Dtos\ShopInputDto.cs" />
+    <Compile Include="Shop\IShopContract.cs" />
+    <Compile Include="Shop\Models\ContractPay.cs" />
+    <Compile Include="Shop\Models\ExpressTemplate.cs" />
+    <Compile Include="Shop\Models\ShopGoodsCategory.cs" />
+    <Compile Include="Shop\Models\ShopPermit.cs" />
+    <Compile Include="Shop\Models\Contract.cs" />
+    <Compile Include="Shop\Models\ContractLevel.cs" />
+    <Compile Include="Shop\Models\Region.cs" />
+    <Compile Include="Shop\Models\Shop.cs" />
+    <Compile Include="Shop\ShopService.ContractPay.cs" />
+    <Compile Include="Shop\ShopService.TemplateExpress.cs" />
+    <Compile Include="Shop\ShopService.ShopPermit.cs" />
+    <Compile Include="Shop\ShopService.Contract.cs" />
+    <Compile Include="Shop\ShopService.Region.cs" />
+    <Compile Include="Shop\ShopService.ContractLevel.cs" />
+    <Compile Include="Shop\ShopService.cs" />
+    <Compile Include="Shop\ShopService.Shop.cs" />
+    <Compile Include="Identity\Models\HCoinTransaction.cs" />
+    <Compile Include="Identity\Models\RmbCoinTransaction.cs" />
+    <Compile Include="Utils\EmailUtils.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="Identity\IdentityService.UserRoleMap.cs" />
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

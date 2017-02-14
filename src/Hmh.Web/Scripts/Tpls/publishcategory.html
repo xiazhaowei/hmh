@@ -1,0 +1,26 @@
+﻿
+<div >
+    <div class="row">
+        <div class="col-xs-4">
+            <select required="" class="form-control" ng-model="selectedCategory1" ng-options="item.id as item.name for item in category1Data" multiple="multiple" size="12">
+                <option value="">分类</option>
+            </select>
+        </div>
+        <div class="col-xs-4">
+            <select class="form-control" ng-model="selectedCategory2" ng-options="item.id as item.name for item in category2Data" multiple="multiple" size="12">
+                <option value="">分类</option>
+            </select>
+        </div>
+        <div class="col-xs-4">
+            <select class="form-control" ng-model="selectedCategory3" ng-options="item.id as item.name for item in category3Data" multiple="multiple" size="12">
+                <option value="">分类</option>
+            </select>
+        </div>
+    </div>    
+    <div class="alert alert-block alert-warning marg-top-15">
+        您当前选择的是：{{selectedCategory.category1}} &gt; {{selectedCategory.category2}} &gt; {{selectedCategory.category3}}
+    </div>
+    <div class="text-center pd-15">
+        <button class="btn green" ng-disabled="!isEnd">我已阅读一下规则，现在发布宝贝</button>
+    </div>
+</div>

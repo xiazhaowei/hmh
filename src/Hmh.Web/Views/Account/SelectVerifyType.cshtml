@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "选择验证方式";
+    Layout = "~/Views/Shared/_CenterLayout.cshtml";
+}
+
+<h4>您正在申请 修改密码，请选择身份验证方式：</h4>
+
+<div class="pd-top-20">
+    <table class="table table-bordered">
+        <tr>
+            <td class="text-center" width="150">
+                <span class="fa fa-2x fa-envelope marg-top-25 text-green"></span>
+            </td>
+            <td>
+                <h4>通过邮箱验证</h4>
+                <p>如果你的邮箱还在使用，请选择此方式</p>
+            </td>
+            <td class="text-center" width="200">
+                <a href="/Account/PasswordEmailVerify" class="btn red marg-top-15">立即验证</a>
+            </td>
+        </tr>
+    </table>
+    <table class="table table-bordered">
+        <tr>
+            <td class="text-center" width="150">
+                <span class="fa fa-2x fa-phone marg-top-25 text-green"></span>
+            </td>
+            <td>
+                <h4>手机验证</h4>
+                <p>如果你的手机还在正常使用，请选择此方式</p>
+            </td>
+            <td class="text-center" width="200">
+                <a href="#" class="btn red marg-top-15">立即验证</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+

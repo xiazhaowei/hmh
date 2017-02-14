@@ -1,0 +1,141 @@
+﻿@model Hmh.Core.Shop.Dtos.ShopInputDto
+@{
+    ViewBag.Title = "CreateShop";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container">
+    <h3>为账户<strong class="text-green">@User.Identity.Name </strong>创建一个店铺</h3>
+    
+    <div class="row  marg-top-60">
+        <div class="col-xs-3">
+            <div class="well well-sm bg-green">
+                <div class="media">
+                    <a class="media-left" href="#">
+                        <span class="fa fa-check fa-2x text-white"></span>
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">第一步</h4>
+                        填写店铺基本资料
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="well well-sm">
+                <div class="media">
+                    <a class="media-left" href="#">
+                        <span class="fa fa-credit-card text-lg  text-muted"></span>
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">第二步</h4>
+                        上传认证资料
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="well well-sm">
+                <div class="media">
+                    <a class="media-left" href="#">
+                        <span class="fa fa-building-o text-muted text-lg"></span>
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">第三步</h4>
+                        选择保本合同类型
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="well well-sm">
+                <div class="media">
+                    <a class="media-left" href="#">
+                        <span class="fa fa-external-link-square text-muted text-lg"></span>
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">第四步</h4>
+                        在线付款
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">           
+    <div class="row">
+        <div class="col-xs-8" ng-controller="hmh.shop.createshop">
+            <h3>店铺基本资料</h3>
+            <form role="form">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <label class="control-label">店铺名称 <span class="text-red">*</span></label>
+                            <input type="text" class="form-control" ng-model="shopInfo.Name" required />                            
+                            <p class="help-block">您的店铺名称，该名称将作为合同主体签署</p>
+                        </div>
+                        <div class="col-xs-6">
+                            <label class="control-label">推荐人ID <span class="text-red">*</span></label>
+                            <input type="text" class="form-control" ng-model="shopInfo.RecommendId"/>
+                            <p class="help-block">您的推荐人，如果没有人推荐您请留空</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <label class="control-label">所属地区<span class="text-red">*</span></label>
+                            <input class="form-control" readonly type="text" name="RegionId" ng-model="shopInfo.RegionStr" hmh-citypicker>
+                            <p class="help-block">店铺所属区域</p>
+                        </div>
+                        <div class="col-xs-6">
+                            <label class="control-label">详细地址<span class="text-red">*</span></label>
+                            <input type="text" class="form-control" ng-model="shopInfo.AddrDetail" required/>                            
+                            <p class="help-block">对于那些提供本地服务的商家，请填写详细地址</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <label>联系人<span class="text-red">*</span></label>
+                            <input type="text" class="form-control" ng-model="shopInfo.LinkMan" required/>                           
+                            <p class="help-block">店铺联系人，亲认证如实填写</p>
+                        </div>
+                        <div class="col-xs-6">
+                            <label>联系手机<span class="text-red">*</span></label>
+                            <input type="text" class="form-control" ng-model="shopInfo.LinkManPhone" required/>                           
+                            <p class="help-block">店铺联系人手机号</p>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <p>点击创建店铺按钮，表示您同意并认同 <a href="javascript:;" ng-click="showShopAgreement()">《惠民汇商城开店协议》</a> 中的内容和条款。</p>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <button type="submit" class="btn green" ng-click="createShop(shopInfo)">创建店铺</button>
+                </div>               
+            </form> 
+        </div>
+        <div class="col-xs-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">为什么要加盟惠民汇</div>
+                <div class="panel-body">
+                        
+                    <h4><span class="glyphicon glyphicon-ok text-success"></span> 签订保本协议</h4>
+                    <p>任何加盟店铺，公司都会签订具有法律效益的保本合同，合同期间您的</p>
+                    <h4><span class="glyphicon glyphicon-ok text-success"></span> 巨量消费人群</h4>
+                    <p>商城包含巨量持有H币的消费人群，引爆您的销售</p>
+                    <h4><span class="glyphicon glyphicon-ok text-success"></span> 更多推广奖励</h4>
+                    <p>拥有一个店铺，可以享受更高的推广奖励，成就您的财富梦</p>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+

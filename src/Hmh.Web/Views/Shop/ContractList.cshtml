@@ -1,0 +1,59 @@
+﻿@using Hmh.Core.Shop.Models
+@model IEnumerable<Contract>
+
+@{
+    ViewBag.Title = "ContractList";
+    Layout = "~/Views/Shared/_ShopCenterLayout.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+    <li><a href="/shop">卖家中心</a></li>
+    <li><a href="/shop/contractlist">合同管理</a></li>
+</ol>
+
+<div class="contractlist">
+    <div class="row">
+        @foreach(var contract in Model)
+        {
+        <div class="col-xs-12">
+            <div class='bd  @(contract.State==ContractState.Using? "active":"" )'>
+                
+                    <div class="row">
+                        <div class="col-xs-9">
+                            <div class="pd-lf-15">
+                                <h4>合同编号：@Html.DisplayFor(modelItem => contract.Number)</h4>
+                                <dl class="dl-horizontal">
+                                    <dt>签订日期</dt>
+                                    <dd>@Html.DisplayFor(modelItem => contract.CreatedTime)</dd>
+                                    <dt>合同期限</dt>
+                                    <dd>@Html.DisplayFor(modelItem => contract.BeginTime) 至 @Html.DisplayFor(modelItem => contract.EndTime) （@Html.DisplayFor(modelItem => contract.Year) 年）</dd>
+                                    <dt>保本金额</dt>
+                                    <dd>@Html.DisplayFor(modelItem => contract.Fee)</dd>
+                                    <dt>H币消费限制</dt>
+                                    <dd>@Html.DisplayFor(modelItem => contract.HCoinLimit)</dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="pd-rt-15 text-right">
+                                <p class="pd-top-30"><span class='label @(contract.State==ContractState.Using? "label-success":"label-default" )'>@contract.State.ToDescription()</span></p>
+                                <p>@contract.ContractPay.PayState.ToDescription()</p>
+                                <div class="btn-group btn-group-sm">
+                                    @if(contract.ContractPay.PayState==PayState.UnPay)
+                                    {
+                                        <a href="/shop/contractpay" class="">付款</a>
+                                    }                                    
+                                    <a href="/shop/ContractDetail/@contract.Id" class="">查看详情</a>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+               
+            </div>
+        </div>
+        }
+    </div>
+    
+</div>

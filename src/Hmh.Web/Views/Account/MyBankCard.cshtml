@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "MyBankCard";
+    Layout = "~/Views/Shared/_CenterLayout.cshtml";
+}
+
+<div class="row cardlist" ng-controller="hmh.account.mybankcards">    
+    <div class="col-xs-3" ng-repeat="item in myBankCards">
+        <div class="card_warp">
+            <div>
+                {{item.BankName}} <span class="pull-right"><a href="javascript:;" ng-click="del($index)"><i class="fa fa-trash-o"></i></a></span>
+            </div>
+            <div class="pd-top-20">
+                {{item.CardNumber}}
+            </div>
+        </div>
+    </div>   
+    
+    <div class="col-xs-3">
+        <a href="javascript:;" ng-click="add()" class="add_link">
+            <p><i class="fa fa-2x fa-plus"></i></p>
+            添加银行卡
+        </a>
+    </div>   
+</div>
+
+
+
+

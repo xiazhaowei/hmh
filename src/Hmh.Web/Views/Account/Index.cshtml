@@ -1,0 +1,181 @@
+﻿
+@{
+    ViewBag.Title = "个人中心";
+    Layout = "~/Views/Shared/_CenterLayout.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-xs-3">
+        <div class="dashboard-stat purple">
+            <div class="visual">
+                <i class="fa fa-user"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    @ViewBag.MyAccount.MyNewInvoteCount
+                </div>
+                <div class="desc">
+                    新邀请用户
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-3">
+        <div class="dashboard-stat purple">
+            <div class="visual">
+                <i class="fa fa-users"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    @ViewBag.MyAccount.User.MyRecommends.Count
+                </div>
+                <div class="desc">
+                    总邀请用户
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-3">
+        <div class="dashboard-stat yellow">
+            <div class="visual">
+                <i class="fa fa-jpy"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    @ViewBag.MyAccount.User.UserExtend.RmbCoin
+                </div>
+                <div class="desc">
+                    现金账户
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-3">
+        <div class="dashboard-stat yellow">
+            <div class="visual">
+                <i class="fa fa-retweet"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    @ViewBag.MyAccount.User.UserExtend.HCoin
+                </div>
+                <div class="desc">
+                    H币账户
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="accountbase">
+    <div class="row">
+        <div class="col-xs-6">
+            <p>我的H币余额：<span class="text-lg text-green">@ViewBag.MyAccount.User.UserExtend.HCoin</span>&nbsp;&nbsp;&nbsp;我的现金余额：<span class="text-lg text-green">@ViewBag.MyAccount.User.UserExtend.RmbCoin</span> <a href="/account/moneylog">资金管理</a></p>
+        </div>
+
+        <div class="col-xs-6">
+            <div class="text-right">                
+                <div class="btn-group btn-group-sm">  
+                    <a href="/account/mydeliveraddress" class="btn default">提现</a>                                    
+                    <a href="/account/mydeliveraddress" class="btn green">充值</a>                    
+                    <a href="/account/mydeliveraddress" class="btn red">转账</a>
+                </div>                
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ordersumerlist">
+    <ul>
+        <li><a href="">全部订单 <span class="badge badge-danger">6</span></a></li>
+        <li><a href="">待付款 <span class="badge badge-danger">6</span></a></li>
+        <li><a href="">待发货 </a></li>
+        <li><a href="">代收货 <span class="badge badge-danger">1</span></a></li>
+        <li><a href="">待评价 <span class="badge badge-danger">6</span></a></li>
+        <li><a href="">退款 </a></li>
+    </ul>
+</div>
+
+<div class="row marg-top-25">
+    <div class="col-xs-12">
+        <div class="portlet box xlightgrey">
+            <div class="portlet-title">
+                <div class="caption">
+                    消费记录
+                </div>
+                <div class="actions">
+                    <a href="#">
+                        <i class="fa fa-share"></i>
+                        更多
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body orderhistory  height-300">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <img src="http://placehold.it/93x90" class="img-responsive" />
+                    </div>
+                    <div class="col-xs-6 row">
+                        <div>斯达克警方的说的话的活动活动开发进度</div>
+                        <p>
+                            kdjf XL
+                        </p>
+                        <span class="label label-success">已完成</span>
+
+
+                    </div>
+                    <div class="col-xs-3 text-right">
+                        <div class="price">
+                            <span class="text-lg text-red">￥5000.00 </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3">
+                        <img src="http://placehold.it/93x90" class="img-responsive" />
+                    </div>
+                    <div class="col-xs-6 row">
+                        <div>斯达克警方的说的话的活动活动开发进度</div>
+                        <p>
+                            kdjf XL
+                        </p>
+                        <span class="label label-success">已完成</span>
+
+
+                    </div>
+                    <div class="col-xs-3 text-right">
+                        <div class="price">
+                            <span class="text-lg text-red">￥5000.00 </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3">
+                        <img src="http://placehold.it/93x90" class="img-responsive" />
+                    </div>
+                    <div class="col-xs-6 row">
+                        <div>斯达克警方的说的话的活动活动开发进度</div>
+                        <p>
+                            kdjf XL
+                        </p>
+                        <span class="label label-success">已完成</span>
+
+
+                    </div>
+                    <div class="col-xs-3 text-right">
+                        <div class="price">
+                            <span class="text-lg text-red">￥5000.00 </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>    
+</div>
+
+
+@section Scripts{
+    
+}

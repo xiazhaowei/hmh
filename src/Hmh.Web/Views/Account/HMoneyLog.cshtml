@@ -1,0 +1,234 @@
+﻿
+@{
+    ViewBag.Title = "H币记录";
+    Layout = "~/Views/Shared/_CenterLayout.cshtml";
+}
+
+<div class="row" ng-controller="hmh.account.moneymgr">
+    <div class="col-xs-6">
+        <h3 style="margin-top:0;">我的资产 <small>（可用余额 <span class="text-green">￥@ViewBag.MyAccount.User.UserExtend.RmbCoin </span> ，可用H币 <span class="text-green">H @ViewBag.MyAccount.User.UserExtend.HCoin </span> ）</small></h3>
+    </div>
+    <div class="col-xs-6">
+        <div class="text-right">
+            <a class="btn btn-sm btn-default" href="javascript:;" ng-click="widthdraw()">
+                提现 <i class="m-icon-swapright m-icon-white"></i>
+            </a>
+            <a class="btn btn-sm btn-danger" href="/account/moneylog">
+                充值 <i class="m-icon-swapright m-icon-white"></i>
+            </a>
+            <a class="btn btn-sm btn-success" href="javascript:;" ng-click="transaction()">
+                转账 <i class="m-icon-swapright m-icon-white"></i>
+            </a>
+        </div>
+
+    </div>
+
+    <!--提现模态框-->
+    <div>
+        <script type="text/ng-template" id="account.moneylog.widthdraw">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="cancel()" aria-hidden="true"></button>
+                <h4 class="modal-title">资金提现</h4>
+            </div>
+            <form class="form-horizontal" name="widthdrawform" novalidate>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="well">
+                                <strong>重要提醒：</strong>法定节假日提现实际到账日期顺延至工作日，最低提现金额100元
+                                您现金可用额度为：@ViewBag.MyAccount.User.UserExtend.RmbCoin
+                            </div>
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">提现到账户</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control" ng-model="widthdrawInfo.BankName" placeholder="选择收款账户" required>
+                                            <option ng-repeat="mybank in myBankCards" value="{{mybank.BankName}}（{{mybank.CardNumber}}{{mybank.UserName}}）">{{mybank.BankName}}（{{mybank.CardNumber}}{{mybank.UserName}}）</option>
+                                        </select>
+                                        <p class="help-block text-red" ng-show="isMyBankCountZero">您还未设置任何提现账户信息, <a class="pull-right" href="/Account/mybankcard">去设置</a></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">提现金额</label>
+                                    <div class="col-md-9">
+                                        <input type="number" class="form-control" placeholder="提现金额" ng-model="widthdrawInfo.Amount" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">资金密码</label>
+                                    <div class="col-md-9">
+                                        <input type="password" class="form-control" placeholder="资金密码" ng-model="widthdrawInfo.Password" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" ng-click="submit()" class="btn blue" ng-disabled="widthdrawform.$invalid">申请提现</button>
+                </div>
+            </form>
+
+        </script>
+    </div>
+    <!--转账模态框-->
+    <div>
+        <script type="text/ng-template" id="account.moneylog.transaction">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="cancel()" aria-hidden="true"></button>
+                <h4 class="modal-title">资金转账</h4>
+            </div>
+            <form class="form-horizontal" name="transactionform" novalidate>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="well">
+                                您现金可用额度为：@ViewBag.MyAccount.User.UserExtend.RmbCoin
+                            </div>
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">收款人</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" placeholder="收款人账号" ng-model="transactionInfo.OtherSizeUserName" data-ng-model-options="{updateOn:'blur'}" required>
+                                        <p class="help-block">{{otherSizeInfo}}</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">金额</label>
+                                    <div class="col-md-9">
+                                        <input type="number" class="form-control" placeholder="转账金额" ng-model="transactionInfo.Amount" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">资金密码</label>
+                                    <div class="col-md-9">
+                                        <input type="password" class="form-control" placeholder="资金密码" ng-model="transactionInfo.Password" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" ng-click="submit()" class="btn blue" ng-disabled="transactionform.$invalid">确认转账</button>
+                </div>
+            </form>
+
+        </script>
+    </div>
+</div>
+
+
+<ul class="nav nav-tabs marg-top-20" role="tablist">
+    <li role="presentation">
+        <a href="/account/moneylog">
+            现金账户记录
+        </a>
+    </li>
+    <li role="presentation" class="active">
+        <a href="/account/hmoneylog">
+            H币记录
+        </a>
+    </li>
+</ul>
+
+<div ng-controller="hmh.account.hmoneylog">
+    <div class="marg-top-15">
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <label class="sr-only" for="exampleInputEmail2">流水号</label>
+                <input type="text" class="form-control" id="exampleInputEmail2" ng-model="filters[0].Value" placeholder="流水号">
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <select class="form-control" ng-model="filters[1].Value">
+                        <option value="All">全部</option>
+                        <option value="Shopping">购买商品</option>
+                        <option value="Transaction">交易转账</option>
+                        <option value="ShopRebate">三级分销</option>
+                        <option value="UserRebate">八代分润</option>
+                        <option value="Other">其他</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <select class="form-control" ng-model="filters[2].Value">
+                        <option value="All">全部</option>
+                        <option value="InCome">转入</option>
+                        <option value="Expend">转出</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-large date-picker input-daterange" data-date="2016/10/1" data-date-format="yyyy/mm/dd" hmh-datepicker>
+                    <input type="text" class="form-control" name="from" placeholder="起始日期" ng-model="filters[3].Value">
+                    <span class="input-group-addon">
+                        至
+                    </span>
+                    <input type="text" class="form-control" name="to" placeholder="结束日期" ng-model="filters[4].Value">
+                </div>
+            </div>
+            <button type="button" ng-click="filterData()" class="btn btn-default pull-right"><i class="fa fa-search"></i>筛选</button>
+        </form>
+
+    </div>
+    <div class="marg-top-35">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        流水号
+                    </th>
+                    <th>
+                        时间
+                    </th>
+                    <th>
+                        交易类型
+                    </th>
+                    <th>
+                        金额
+                    </th>
+                    <th>
+                        实际金额
+                    </th>
+                    <th>
+                        状态
+                    </th>
+                    <th>
+                        备注
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="hCoinTransaction in HCoinTransactions">
+                    <td>
+                        {{hCoinTransaction.StreamId}}
+                    </td>
+                    <td>
+                        {{hCoinTransaction.CreatedTime}}
+                    </td>
+                    <td>
+                        {{hCoinTransaction.Type}}
+                    </td>
+                    <td>
+                        {{hCoinTransaction.Amount}}
+                    </td>
+                    <td>
+                        {{hCoinTransaction.RealAmount}}
+                    </td>
+                    <td>
+                        {{hCoinTransaction.State}}
+                    </td>
+                    <td>
+                        {{hCoinTransaction.Remark}}
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <hmh-pagination conf="paginationConf"></hmh-pagination>
+    </div>
+</div>

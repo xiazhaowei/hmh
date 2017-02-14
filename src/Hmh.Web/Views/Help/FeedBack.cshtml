@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "FeedBack";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    
+    <div class="row">
+        
+        <div class="col-xs-8 col-xs-offset-2">
+            <h3>反馈中心/假货举报</h3>
+            <div class="note note-success">
+                <h4 class="block">我们很重视您的举报反馈</h4>
+                <p>
+                    我们绝不允许我们的商品有假货，或价格不合理的商品存在，如果您发现有假货商品，亲反馈给我们，我们有稽查部门及时处理，一经确认我们将根据合同，处理出售假货的商家，详细处罚条例
+                    <a href="https://github.com/willsteinmetz/jquery-notific8" target="_blank">
+                        查看详情
+                    </a>
+                </p>
+            </div>
+            
+            <div>
+                <form action="#">                    
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label>反馈类型</label>
+                            <select class="form-control">
+                                <option>商城意见反馈</option>
+                                <option>假货举报</option>                                <
+                            </select>
+                            <p class="help-block">选择反馈类型</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label class="control-label">您的联系手机</label>
+                                    <input type="text" id="firstName" class="form-control" placeholder="">
+                                    <span class="help-block">
+                                        您的联系方式，方便我们的客服人员联系您
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label class="control-label">邮箱</label>
+                                    <input type="text" id="firstName" class="form-control" placeholder="">
+                                    <span class="help-block">
+                                        反馈处理反馈给您，我们可以通过邮件反馈给您
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>反馈内容</label>
+                            <textarea class="form-control" rows="3"></textarea>
+                            <p class="help-block">详细说明您的反馈内容</p>
+                        </div>
+                        
+                    </div>
+                    <div class="pd-15">
+                        <button type="submit" class="btn green">提交反馈</button>                       
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

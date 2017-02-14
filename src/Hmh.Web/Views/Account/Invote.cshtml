@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "我的邀约信息";
+    Layout = "~/Views/Shared/_CenterLayout.cshtml";
+}
+
+@section header{
+    @Styles.Render("~/modal")
+}
+
+
+
+<div class="invotetltbox">
+    <h2>邀请好友得奖金</h2>
+    <div class="row">
+        <div class="col-xs-4">
+            <div class="text-center">
+                <p><i class="fa fa-3x icon-white fa-user"></i></p>
+                <p>邀请好友加入惠民汇我的10元</p>
+            </div>
+            
+        </div>
+        <div class="col-xs-4">
+            <div class="text-center">
+                <p><i class="fa fa-3x icon-white fa-shopping-cart"></i></p>
+                <p>好友消费再得奖励</p>
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <div class="text-center">
+                <p><i class="fa fa-3x icon-white fa-home"></i></p>
+                <p>店主好友开店我得高奖金</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="marg-top-40">
+    <div class="row">
+        <div class="col-xs-6">
+            <div>
+                已经邀请 @ViewBag.MyAccount.User.MyRecommends.Count 人  <a href="/account/myinvotes">查看 <i class="fa fa-angle-right"></i></a>
+            </div>
+            
+        </div>
+        <div class="col-xs-6">
+            <div class="text-right">
+                <a href="#myinvoteid" class="btn yellow" data-toggle="modal"><i class="fa fa-eye"></i> 我的邀请ID</a>
+            </div>            
+        </div>
+    </div>
+</div>
+
+<div class="invotejlrule">
+    <h3>奖励规则：</h3>
+    <ul>
+        <li>
+            活动时间：终身有效
+        </li>
+        <li>
+            已经注册惠民汇商城的用户，每邀请一位好友开通惠民汇账户，即可获得10元奖励，上不封顶，邀请的奖金作为H币发放，H可以作为人民币在商城上购买任何你想要的商品
+        </li>
+        <li>
+            邀请的好友在商城上消费，都会拿到8级分销奖励，正在的滚雪球效应
+        </li>
+        <li>
+            如果您是一位店主，您的好友开店，您一次拿5000元现金奖励，其中70%为人民币奖励可随时提现，30%为H币奖励，可任意消费
+        </li>
+    </ul>
+</div>
+
+<div id="myinvoteid" class="modal fade" tabindex="-1" data-width="500">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">我的邀请ID</h4>
+            </div>
+            <div class="modal-body">
+                <div class="well">
+                    推荐注册网址：<a href="#" class="pull-right">复制</a>
+                    <p>http://register?recommendid=@ViewBag.MyAccount.User.Id </p>
+                </div>
+                <div class="text-center pd-15">
+                    <p><img src="http://placehold.it/200x200" /></p>
+                    <h4>扫描二维码开通惠民汇账户</h4>
+                    <p class="text-muted">我的邀约ID：<span class="text-xlg">@ViewBag.MyAccount.User.Id</span></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn green">确定</button>
+            </div>
+        </div>
+        
+    </div>
+ 
+</div>

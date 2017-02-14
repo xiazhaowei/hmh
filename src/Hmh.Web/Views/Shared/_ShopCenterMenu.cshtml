@@ -1,0 +1,26 @@
+﻿@{
+    Layout = null;
+}
+
+
+<div class="row usercentermenu">
+    <div class="text-center bg-white bd">
+        <div class="pd-10">
+            <img src="http://placehold.it/100x100" class="img-circle" />
+        </div> 
+        <p class="marg-top-10"><strong>@ViewBag.MyAccount.User.Shop.Name</strong> <a href=""><i class="fa fa-edit"></i></a></p>
+        <p class="text-muted"></p>
+        <div class="pd-15">
+            H消费限制：<span class="text-lg">0/@ViewBag.MyAccount.User.Shop.HCoinLimit</span>
+        </div>
+        <div>
+            <ul>
+                <li role="presentation" class="active"><a href="/shop/orderlists"> 订单管理 </a></li>
+                <li role="presentation"><a href="/shop/goodses">商品管理</a></li>
+                <li role="presentation"><a href="/account/moneylog">账单</a></li>
+                <li role="presentation"><a href="/shop/contractlists">合同管理</a></li>
+                <li role="presentation"><a href="/shop/expresstemplates">运费模板设置</a></li>                
+            </ul>
+        </div>
+    </div> 
+</div>

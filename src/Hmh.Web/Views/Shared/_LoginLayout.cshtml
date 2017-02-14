@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-ng-app="hmhApp">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/common/css")
+
+    @RenderSection("header", false)
+</head>
+<body>
+
+
+    <div>
+        @RenderBody()
+    </div>
+
+    @RenderSection("footer", false)
+
+    @Scripts.Render("~/hmh")
+
+    @RenderSection("scripts", false)
+
+
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-ng-app="hmhApp">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/common/css")
+
+    @RenderSection("header", false)
+</head>
+<body>
+    @Html.Partial("_SiteTopNav")
+    @Html.Partial("_PageHeader")
+    @Html.Partial("_SiteMainNav")
+    <div data-ng-include="'/scripts/tpls/login.html'" data-ng-controller="hmh.account.login.modal"></div>
+    <div>
+        @RenderBody()
+    </div>
+
+    @Html.Partial("_PageFooter")
+
+    @RenderSection("footer", false)
+
+    @Scripts.Render("~/hmh")
+
+    @RenderSection("scripts", false)
+</body>
+</html>

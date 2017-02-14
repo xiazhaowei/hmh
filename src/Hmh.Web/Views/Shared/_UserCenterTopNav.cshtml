@@ -1,0 +1,56 @@
+﻿@{
+    Layout = null;
+}
+
+<!--顶部菜单-->
+<div class="main-menu">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-3">
+                <a href="/"><img src="/content/images/logo.png" alt="惠民汇logo" /></a> <span class="text-lg text-white">个人中心</span>
+            </div>
+            <div class="col-xs-6">
+                <div class="hmh-wrapper-inner">
+                    <form class="hmh-form -form-search">
+                        <div class="partial -left">
+                            <input name="q" type="text" class="hmh-form-text -text-lg" placeholder="" autofocus="autofocus">
+                        </div>
+                        <div class="partial -right">
+                            <button class="btn -btn-green -btn-lg" type="submit">
+                                <i class="fa fa-search"></i> <span>搜索</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-xs-3">
+                <div class="center-mainnav">
+                    <ul class="nav nav-pills">
+                        @if (ViewContext.RouteData.Values["controller"].ToString().ToLower() == "account")
+                        {
+                            <li role="presentation" class="active"><a href="/account/index">个人中心</a></li>
+
+                        }
+                        else
+                        {
+                            <li role="presentation"><a href="/account/index">个人中心</a></li>
+                        }
+
+                        @if (ViewContext.RouteData.Values["controller"].ToString().ToLower() == "shop")
+                        {
+                            <li role="presentation" class="active"><a href="/shop/index">卖家中心</a></li>
+
+                        }
+                        else
+                        {
+                            <li role="presentation"><a href="/shop/index">卖家中心</a></li>
+                        }
+                        
+                        
+                        <li role="presentation"><a href="/">返回首页</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

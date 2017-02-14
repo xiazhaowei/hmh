@@ -1,0 +1,144 @@
+﻿@model Hmh.Web.ViewModels.ContractPayViewModel
+@{
+    ViewBag.Title = "ContractPay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h3>为账户<strong class="text-green">@User.Identity.Name </strong>创建一个店铺</h3>
+    <h4>@ViewBag.MyAccount.User.Shop.Name</h4>
+    <div class="row  marg-top-60">
+        <div class="col-xs-3">
+            <div class="well well-sm bg-lightgreen">
+                <div class="media">
+                    <a class="media-left" href="#">
+                        <span class="fa fa-check fa-2x text-green"></span>
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">第一步</h4>
+                        填写店铺基本资料
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="well well-sm bg-lightgreen">
+                <div class="media">
+                    <a class="media-left" href="#">
+                        <span class="fa fa-check text-lg  text-green"></span>
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">第二步</h4>
+                        上传认证资料
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="well well-sm bg-lightgreen">
+                <div class="media">
+                    <a class="media-left" href="#">
+                        <span class="fa fa-check text-green text-lg"></span>
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">第三步</h4>
+                        选择保本合同类型
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="well well-sm bg-green">
+                <div class="media">
+                    <a class="media-left" href="#">
+                        <span class="fa fa-external-link-square text-white text-lg"></span>
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">第四步</h4>
+                        在线付款
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="">        
+        <div>
+            <h3>待支付信息</h3>
+            <div class="bd bg-white radius-10">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <div class="pd-20">
+                            <div>待支付：</div>
+                            <span class="text-xlg text-red">￥：@ViewBag.MyAccount.User.Shop.CurrentContract.Fee</span>
+                        </div>                        
+                    </div>
+                    <div class="col-xs-9 bd-lf">
+                        <h3>合同基本信息</h3>
+                        <p>
+                            开店合同 @ViewBag.MyAccount.User.Shop.CurrentContract.Fee 元整
+                            合同期限：@ViewBag.MyAccount.User.Shop.CurrentContract.Year 年
+                            普通店铺，H币消费限制：@ViewBag.MyAccount.User.Shop.CurrentContract.HCoinLimit
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="marg-top-40">
+                <h3>选择付款方式</h3>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <div class="bd">
+                            <h3 class="pd-lf-20">微信支付</h3>
+                            <div class="pd-30 bd-topbtn height-260 text-center">
+                                <p class="text-center pd-top-20"><img src="/content/images/wechart.png" alt="微信支付" /></p>
+                                <p class="help-block">用微信二维码扫一扫付款</p>
+                            </div>
+                            <div class="pd-30">
+                                <button class="btn btn-lg btn-block btn-success">微信支付</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="bd">
+                            <h3 class="pd-lf-20">支付宝支付</h3>
+                            <div class="pd-30 bd-topbtn height-260 text-center">
+                                <p class="text-center pd-top-20"><img src="/content/images/alipay.png" alt="支付宝支付" /></p>
+                                <p class="help-block">用支付宝扫一扫付款</p>
+                            </div>
+                            <div class="pd-30">
+                                <button class="btn btn-lg btn-block btn-primary">支付宝支付</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="bd">                            
+                            <form role="form" ng-controller="hmh.shop.paycontract">
+                                <h3 class="pd-lf-20">银行汇款</h3>
+                                <div class="pd-30 bd-topbtn height-260">
+                                    <p class="title">向一下账户汇款后，提交您的打款金额和流失号，等待公司审核</p>
+                                    <p>开户行：日照银行海区支行</p>
+                                    <p>账户：<strong>621226 1616 0024 97974</strong></p>
+                                    <p>户名：上海悟行电子商务有限公司</p>
+                                    <div class="marg-top-5">
+                                        <p>
+                                            <input type="number" class="form-control" ng-model="payInfo.Money" placeholder="您的打款金额" required />
+                                        </p>
+                                        <input type="text" class="form-control" ng-model="payInfo.PayStreamId" placeholder="银行打款流水号" required />                                        
+                                    </div>
+                                </div>
+                                <div class="pd-30">
+                                    <button type="submit" ng-click="submitContractPay()" class="btn btn-lg btn-block btn-info">已汇款，提交流水号</button>
+                                </div>
+                            </form> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

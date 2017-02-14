@@ -1,0 +1,57 @@
+﻿@model Hmh.Core.Shop.Models.Contract
+
+@using Hmh.Core.Shop.Models
+
+
+@{
+    ViewBag.Title = "ContractDetail";
+    Layout = "~/Views/Shared/_ShopCenterLayout.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+    <li><a href="/shop">卖家中心</a></li> 
+    <li><a href="/shop/contractlist">合同管理</a></li>    
+    <li><a href="/shop/contractdetail">合同详情</a></li>
+</ol>
+
+
+
+<div class="portlet solid" style="margin-bottom:0">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i> 合同编号：@Model.Number
+        </div>
+        <div class="actions">
+            <button class="btn default btn-sm" data-print="contractinfo">
+                <i class="fa fa-print icon-black"></i> 打印
+            </button>
+            <a href="/account/signcontract" class="btn red btn-sm">
+                <i class="fa fa-print"></i> 续签
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <dl class="dl-horizontal">
+            <dt>签订时间</dt>
+            <dd>@Model.CreatedTime</dd>
+            <dt>合同期限</dt>
+            <dd>@Model.BeginTime 至 @Model.EndTime <span> @Model.Year 年</span></dd>
+            <dt>保本金额</dt>
+            <dd>@Model.Fee</dd>
+            <dt>店铺消费限制</dt>
+            <dd>@Model.HCoinLimit</dd>
+        </dl>
+    </div>
+</div>
+<div class="progress bd">
+    <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
+        已收益：00.00
+    </div>
+</div>
+
+@Html.Partial("_contractinfo",new ContractPreViewModel { Shop=Model.Shop,Years=Model.Year,ContractLevel=new ContractLevel{HCoinLimit=Model.HCoinLimit,InitalFee=Model.InitalFee } })
+
+<div class="text-right">
+    <button class="btn btn-default" data-print="contractinfo"><i class="fa fa-print"></i> 打印</button>
+</div>

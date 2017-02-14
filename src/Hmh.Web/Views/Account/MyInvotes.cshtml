@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "我邀请的人";
+    Layout = "~/Views/Shared/_CenterLayout.cshtml";
+}
+
+
+<div data-ng-controller="hmh.account.myinvotes">
+    <table class="table table-striped">
+        <tr>
+            <td width="100">用户ID</td>
+            <td>昵称</td>            
+            <td>消费总金额</td>
+            <td width="100">注册时间</td>
+        </tr>
+        <tr ng-repeat="item in myInvotes">
+            <td>{{item.Id}}</td>
+            <td>{{item.NickName}}</td>            
+            <td>0</td>
+            <td>{{item.CreatedTime}}</td>
+        </tr>
+    </table>
+    <hmh-pagination conf="paginationConf"></hmh-pagination>
+</div>
+
+
+
+

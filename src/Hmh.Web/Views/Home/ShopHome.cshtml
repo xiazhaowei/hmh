@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "店铺首页";
+    Layout = "~/Views/Shared/_ShopLayout.cshtml";
+}
+
+<div class="container marg-top-40">
+    <div class="row">
+        <div class="col-xs-2">
+            <div class="goodsshopinfo" ng-controller="hmh.shopinfo">
+                <div class="shopbase">
+                    <div class="pd-top-10">
+                        <img src="http://placehold.it/100x100" class="img-circle" />
+                    </div>
+                    <h4>{{shop.Name}}</h4>
+                    <p>{{shop.Province}}·{{shop.City}}</p>
+                    <p>
+                        今日H币剩余限额<br />
+                        <span class="text-lg text-xlg text-green">{{shop.HCoinLimit}}</span>
+                    </p>
+                    <div>
+                        <a href="/account/index" class="btn btn-primary" style="width:50%"><i class="fa fa-heart"></i> 收藏</a><a href="" class="btn btn-info" style="width: 50%; "><i class="fa fa-comments"></i> 咨询</a>
+                    </div>
+                </div>
+
+                <div class="portlet">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            全部商品
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="catlist">
+                            <ul>
+                                <li><a href="">全部</a></li>
+                                <li ng-repeat="shopGoodsCategory in shop.ShopGoodsCategoryes"><a href="/Home/ShopGoods/?catid={{shopGoodsCategory.Id}}">{{shopGoodsCategory.Name}}</a></li>                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-10">
+            <div class="shopbanner">
+                <img src="http://placehold.it/1003x280" />
+            </div>
+            <div class="portlet marg-top-20" ng-controller="hmh.shopinfo.hotgoods">
+                <div class="portlet-title">
+                    <div class="caption">
+                        店铺热卖
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="row">
+                        <div class="col-xs-3" ng-repeat="hotGoods in hotGoodses">
+                            <p>
+                                <a href="/Home/GoodsInfo/{{hotGoods.Id}}"><img src="http://placehold.it/250x250" class="img-responsive" /></a>
+                            </p>
+                            <p class="text-center">{{hotGoods.Name}}</p>
+                            <p class="text-center"><span class="text-red">￥{{hotGoods.Price}}</span></p>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+            <div class="portlet marg-top-20" ng-controller="hmh.shopinfo.newgoods">
+                <div class="portlet-title">
+                    <div class="caption">
+                        掌柜推荐
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="row">
+                        <div class="col-xs-3" ng-repeat="newGoods in newGoodses">
+                            <p>
+                                <a href="/Home/GoodsInfo/{{newGoods.Id}}"><img src="http://placehold.it/250x250" class="img-responsive" /></a>
+                            </p>
+                            <p class="text-center">{{newGoods.Name}}</p>
+                            <p class="text-center"><span class="text-red">￥{{newGoods.Price}}</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="portlet marg-top-20">
+                <div class="portlet-title">
+                    <div class="caption">
+                        工商登记信息
+                    </div>
+                </div>
+                <div class="portlet-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

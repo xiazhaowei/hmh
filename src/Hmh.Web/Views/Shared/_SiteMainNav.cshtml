@@ -1,0 +1,79 @@
+﻿@{
+    Layout = null;
+}
+
+<!--主导航-->
+<div class="main-nav" ng-controller="hmh.mainnav">
+    <div class="container">
+        <ul class="homeul">
+            <li>
+                <a href="/"><i class="fa fa-home"></i> 首页</a>
+            </li>
+            <li>
+                <a href="/help/feedback" data-toggle="tooltip" data-placement="bottom" title="假货举报，奖励2万"><i class="fa fa-list-alt"></i> 反馈</a>
+            </li>
+        </ul>
+        <ul class="nav nav-pills">
+            <li role="presentation" ng-repeat="rootcat in pubCategoryData">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">{{rootcat.name}}{{rootcat.children.lenght}} </a>
+                <div class="dropdown-menu fullwidth">
+                    <div class="submenu-warpper pd-20">
+                        <div class="row">
+                            <div class="col-xs-8 bd-rt">
+                                <div class="sub-menu-content">
+                                    <dl class="dl-horizontal" ng-repeat="level2cat in rootcat.children">
+                                        <dt class="hmh-submenu-title">{{level2cat.name}} <i class="fa  fa-angle-right"></i></dt>
+                                        <dd>
+                                            <ul class="list-inline">
+                                                <li ng-repeat="level3cat in level2cat.children"><a href="{{level3cat.link}}" >{{level3cat.name}}</a></li>                                                
+                                            </ul>
+                                        </dd>                                        
+                                    </dl>
+                                </div>
+
+                            </div>
+                            <div class="col-xs-4 row">
+                                <div class="col-xs-4">
+                                    <a href="" class="thumbnail">
+                                        <img class="img-responsive" src="http://placehold.it/150x150" />
+                                    </a>
+                                </div>
+                                <div class="col-xs-4">
+                                    <a href="" class="thumbnail">
+                                        <img class="img-responsive" src="http://placehold.it/150x150" />
+                                    </a>
+                                </div>
+                                <div class="col-xs-4">
+                                    <a href="" class="thumbnail">
+                                        <img class="img-responsive" src="http://placehold.it/150x150" />
+                                    </a>
+                                </div>
+                                <div class="col-xs-4">
+                                    <a href="" class="thumbnail">
+                                        <img class="img-responsive" src="http://placehold.it/150x150" />
+                                    </a>
+                                </div>
+                                <div class="col-xs-4">
+                                    <a href="" class="thumbnail">
+                                        <img class="img-responsive" src="http://placehold.it/150x150" />
+                                    </a>
+                                </div>
+                                <div class="col-xs-4">
+                                    <a href="" class="thumbnail">
+                                        <img class="img-responsive" src="http://placehold.it/150x150" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li role="presentation"><a href="/Home/AllCategory"><span class="fa fa-ellipsis-h"></span></a></li>
+            <li role="presentation" class="hmh-local">
+                <a href="/localsite" class="btn"><i class="fa fa-2x fa-map-marker"></i> 本地生活</a>
+            </li>
+        </ul>
+    </div>    
+</div>
+
+<!--主导航 end-->

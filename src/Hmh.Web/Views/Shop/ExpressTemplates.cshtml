@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "运费模板管理";
+    Layout = "~/Views/Shared/_ShopCenterLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xs-6">
+        <h3 style="margin-top:0">运费模板</h3>
+    </div>
+    <div class="col-xs-6">
+        <div class="text-right">
+            <a href="/shop/createexpresstemplate">+ 添加运费模板</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="marg-top-10" ng-controller="hmh.shop.expresstemplates">
+
+    <table class="table table-bordered" ng-repeat="item in expressTemplates">
+        <tr class="active">
+            <td width="200"><strong>{{ item.Name }}</strong></td>
+            <td colspan="3">发货地址：{{ item.DeliverAddress }}，发货时间：{{item.DeliverTime}}</td>
+            <td width="200" class="text-right">
+                <a href="javascript:;"><span class="fa fa-edit"></span> 编辑</a>
+                <a href="javascript:;" ng-click="del(item.Id)"><span class="fa fa-trash-o"></span> 删除</a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5">默认运费：{{ item.Count }} 件内，运费{{ item.Price }}元，每增加{{ item.CountAdd }}件，邮费增加{{ item.PriceAdd }}元</td>            
+        </tr>
+        <tr ng-repeat="specItem in item.SpecialExpressAddresses">
+            <td>{{specItem.Address}}</td>
+            <td>首件：{{specItem.Count}}</td>
+            <td>运费：{{specItem.Price}}</td>
+            <td>续件：{{specItem.CountAdd}}</td>
+            <td>续费：{{specItem.PriceAdd}}</td>
+        </tr>
+    </table>
+    <hmh-pagination conf="paginationConf"></hmh-pagination>
+</div>

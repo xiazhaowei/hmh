@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewBag.Title = "确认订单";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-controller="hmh.cart.confirmorder">
+    <div class="container marg-top-25">
+        <div class="portlet">
+            <div class="portlet-title">
+                <div class="caption">
+                    收货地址
+                </div>
+                <div class="tools">
+                    <a href="/account/mydeliveraddress" target="_blank">收货地址管理</a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="radio-list">
+                    <label ng-repeat="myDeliverAddress in myDeliverAddresses">
+                        <input type="radio" name="optionsRadios" ng-checked="myDeliverAddress.IsDefault" ng-click="setOrderExpress(myDeliverAddress)"> {{myDeliverAddress.Name}} {{ myDeliverAddress.Region + myDeliverAddress.DetailAddress }}  <strong>{{myDeliverAddress.Mobile}}</strong> <span ng-show="myDeliverAddress.IsDefault">【默认地址】</span>
+                    </label>
+                </div>
+                <div class="pd-top-20">
+                    <a href="javascript:;" ng-click="addDeliverAddress({})">+ 使用新收货地址</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="portlet">
+            <div class="portlet-title">
+                <div class="caption">
+                    订单信息
+                </div>
+            </div>
+            <div class="portlet-body">
+                <input type="hidden" value="@ViewBag.sfrom" id="hid_sfrom" />
+                <input type="hidden" value="@ViewBag.referer" id="hid_referer" />
+                <input type="hidden" value="@ViewBag.orderCart" id="hid_ordercart" />
+                <table class="table cart-table">
+                    <thead>
+                        <tr class="active">
+                            <th class="cart-goods"><label>商品信息</label></th>
+                            <th class="cart-price"><label>单价</label></th>
+                            <th class="cart-num"><label>数量</label></th>
+                            <th class="cart-sum"><label>小计</label></th>
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="shop in orderCarts.orderCart">
+                        <tr><td colspan="4"></td></tr>
+                        <tr class="active"><td colspan="2">{{shop.Name}}</td><td colspan="2" class="text-right"></td></tr>
+                        <tr ng-repeat="goods in shop.Items">
+                            <td class="cart-goods">
+                                <div class="media">
+                                    <a class="media-left" href="/Home/GoodsInfo?id={{goods.GoodsId}}">
+                                        <img src="http://placehold.it/80x60" alt="...">
+                                    </a>
+                                    <div class="media-body">
+                                        <a href="/Home/GoodsInfo?id={{goods.GoodsId}}"><h4 class="media-heading">{{goods.Name}}</h4></a>
+                                        <p class="text-muted">{{goods.SkuInfo}}</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="cart-price">
+                                <span class="hmh-price">￥：{{goods.Price}}</span>
+                            </td>
+                            <td class="cart-num">
+                                {{goods.BuyCount}}
+                            </td>
+                            <td class="cart-sum">
+                                <span class="hmh-price text-red">￥：{{goods.Price * goods.BuyCount}}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <textarea class="form-control" ng-model="shop.Remark" placeholder="给卖家留言：选填，对本次交易的说明（建议填写已和商家协商一致的内容）"></textarea>
+                            </td>
+                            <td>
+                                运送方式：快递免邮费
+                            </td>
+                            <td>店铺合计：<span class="text-red">￥{{getShopAmount(shop)}}</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container">
+        <div class="cart-sumer">
+            <div class="pd-10">
+                <label><input type="checkbox" />使用H币付款</label> <span>（H币余额：45122）</span>
+            </div>
+            <div>
+                <a href="/cart/index" ng-show="referer=='cart'"><span class="fa fa-mail-reply"></span> 返回购物车</a> 订单总额<span class="text-red">￥1451</span> H币付款<span class="text-red">1400.0</span> 实需付款：<span class="text-lg text-red">￥51.0</span> <button ng-click="submitOrder()" class="btn green btn-lg">提交订单</button>
+            </div>
+        </div>
+        <div class="alert alert-danger text-right">
+            <p>寄送至：{{orderInfo.OrderExpress.Region}}  {{orderInfo.OrderExpress.DetailAddress}}</p>
+            收货人：{{orderInfo.OrderExpress.Name + orderInfo.OrderExpress.Mobile}}
+            <div>
+                {{orderInfo}}
+            </div>
+        </div>
+    </div>
+
+</div>
+

@@ -1,0 +1,133 @@
+﻿@using Hmh.Core.Shop.Models
+
+@model SignContractViewModel
+
+@{
+    ViewBag.Title = "SignContract";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h3>为账户<strong class="text-green">@User.Identity.Name </strong>创建一个店铺</h3>
+    <h4>@ViewBag.MyAccount.User.Shop.Name</h4>
+    <div class="row  marg-top-60">
+        <div class="col-xs-3">
+            <div class="well well-sm bg-lightgreen">
+                <div class="media">
+                    <a class="media-left" href="#">
+                        <span class="fa fa-check fa-2x text-green"></span>
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">第一步</h4>
+                        填写店铺基本资料
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="well well-sm bg-lightgreen">
+                <div class="media">
+                    <a class="media-left" href="#">
+                        <span class="fa fa-check text-lg  text-green"></span>
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">第二步</h4>
+                        上传认证资料
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="well well-sm bg-green">
+                <div class="media">
+                    <a class="media-left" href="#">
+                        <span class="fa fa-building-o text-white text-lg"></span>
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">第三步</h4>
+                        选择保本合同类型
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="well well-sm">
+                <div class="media">
+                    <a class="media-left" href="#">
+                        <span class="fa fa-external-link-square text-muted text-lg"></span>
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">第四步</h4>
+                        在线付款
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div>        
+        <div class="pd-topbtn-50" data-ng-controller="hmh.shop.signcontract">
+            <h3>选择一种合同</h3>
+            <div class="marg-auto pd-top-20">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="text-left">
+                            <div class="bd radius-5">
+                                <h3 class="pd-lf-20">普通合同</h3>                               
+                                <div class="pd-30 bd-topbtn height-240">
+                                    <p><span class="text-xlg">￥10000</span>/每年</p>
+                                    <p>
+                                        合同有效期一年，合同到期，如果营业收入低于10000，公司将补贴余下部分，公司保证营业收入
+                                    </p> 
+                                    <div>
+                                        <p><span class="glyphicon glyphicon-time"></span> 合同期限：1年</p>
+                                        <p><span class="glyphicon glyphicon-registration-mark"></span> 每日H币消费限制：800/日</p>                                        
+                                    </div>                                   
+                                </div>                                
+                                <div class="pd-30">
+                                    <button class="btn btn-primary btn-lg btn-block" data-ng-click="genDefaultContract()">生成并预览合同</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="text-left">
+                            <div class="bd  radius-5">
+                                <h3 class="pd-lf-20">自定义合同</h3>
+                                <div class="pd-30 bd-topbtn height-240">
+                                    <p>根据选择定价 <span class="text-xlg" ng-cloak>￥{{contractInfo.year * contractInfo.initalfee}}</span></p>
+                                    <p>
+                                        根据选择生成合同，保本金额为合同金额，合同到期系统自动结算
+                                    </p>
+                                    <div>
+                                        <select class="form-control" data-ng-model="contractInfo.year">
+                                            <option value="1">签订1年</option>
+                                            <option value="2">签订2年</option>
+                                            <option value="3">签订3年</option>
+                                            <option value="3">签订4年</option>
+                                            <option value="5">签订5年</option>
+                                        </select>
+                                    </div>
+                                    <div class="pd-top-10">
+                                        <select class="form-control select_level" data-ng-model="contractInfo.selectedcontractLevel"> 
+                                            <option data-ng-repeat="cl in ContractLevels" value="{{cl.Name}}" >{{cl.Name + '：'+cl.InitalFee + '/年 H消费限制：'+ cl.HCoinLimit}}</option>                                           
+                                        </select>
+                                    </div>                                    
+                                </div> 
+                                <div class="pd-30">
+                                    <buttn class="btn btn-warning btn-lg btn-block" data-ng-click="genContract()">生成并预览合同</buttn>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>       
+    </div>
+</div>
+
+
+

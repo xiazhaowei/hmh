@@ -1,0 +1,27 @@
+﻿<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="#/dashboard">主页</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <a href="#" ng-bind="$state.current.data.pageTitle"></a>
+        </li>
+    </ul>
+    <div class="page-toolbar"></div>
+</div>
+<h3 class="page-title" ng-bind="$state.current.data.pageTitle"></h3>
+<div class="portlet box green" ng-controller="app.admin.identity.userroles">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-cogs"></i><span ng-bind="title"></span>
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse"></a>
+            <a href="javascript:;" class="fullscreen"></a>
+        </div>
+    </div>
+    <div class="portlet-body flip-scroll">
+        <kendo-grid options="gridOptions"></kendo-grid>
+    </div>
+</div>

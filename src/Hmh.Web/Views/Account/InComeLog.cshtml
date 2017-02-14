@@ -1,0 +1,210 @@
+﻿
+@{
+    ViewBag.Title = "InComeLog";
+    Layout = "~/Views/Shared/_CenterLayout.cshtml";
+}
+
+
+<ol class="breadcrumb">
+    <li><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+    <li><a href="/account">用户中心</a></li>
+    <li><a href="#">收益记录</a></li>
+</ol>
+
+<div class="row">
+    <div class="col-xs-4">
+        <div class="dashboard-stat blue">
+            <div class="visual">
+                <i class="fa fa-rmb"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    1349
+                </div>
+                <div class="desc">
+                    现金
+                </div>
+            </div>
+            <a class="more" href="/account/moneylog">
+                提现 <i class="m-icon-swapright m-icon-white"></i>
+            </a>
+            <a class="more" href="/account/moneylog">
+                充值 <i class="m-icon-swapright m-icon-white"></i>
+            </a>
+            <a class="more" href="/account/moneylog">
+                转账 <i class="m-icon-swapright m-icon-white"></i>
+            </a>
+            <a class="more" href="/account/moneylog">
+                资金记录 <i class="m-icon-swapright m-icon-white"></i>
+            </a>
+        </div>
+    </div>
+    <div class="col-xs-4">
+        <div class="dashboard-stat green">
+            <div class="visual">
+                <i class="fa fa-bitcoin"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    549
+                </div>
+                <div class="desc">
+                    H币
+                </div>
+            </div>
+            <a class="more" href="#">
+                如何赚取H币 <i class="m-icon-swapright m-icon-white"></i>
+            </a>
+            <a class="more" href="#">
+                联合积分购物券转入 <i class="m-icon-swapright m-icon-white"></i>
+            </a>
+            <a class="more" href="#">
+                查看记录 <i class="m-icon-swapright m-icon-white"></i>
+            </a>
+            <a class="more" href="#">
+                &nbsp; <i class="m-icon-swapright m-icon-white"></i>
+            </a>
+        </div>
+    </div>
+    <div class="col-xs-4">
+        <div class="dashboard-stat purple">
+            <div class="visual">
+                <i class="fa fa-money"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    8452
+                </div>
+                <div class="desc">
+                    累积收益
+                </div>
+            </div>
+            <a class="more" href="#">
+                查看记录 <i class="m-icon-swapright m-icon-white"></i>
+            </a>
+            <a class="more" href="#">
+                &nbsp; <i class="m-icon-swapright m-icon-white"></i>
+            </a>
+            <a class="more" href="#">
+                &nbsp; <i class="m-icon-swapright m-icon-white"></i>
+            </a>
+            <a class="more" href="#">
+                &nbsp; <i class="m-icon-swapright m-icon-white"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation">
+                    <a href="/account/moneylog">
+                        现金账户记录
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="/account/hmoneylog">
+                        H币记录
+                    </a>
+                </li>
+                <li role="presentation" class="active">
+                    <a href="/account/incomelog">
+                        收益记录
+                    </a>
+                </li>
+            </ul>
+
+            <div class="marg-top-15">
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <label class="sr-only" for="exampleInputEmail2">您的订单号</label>
+                        <input type="text" class="form-control" id="exampleInputEmail2" placeholder="请输入您的订单号">
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <select class="form-control">
+                                <option>购买商品</option>
+                                <option>交易转账</option>
+                                <option>充值</option>
+                                <option>提现</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <select class="form-control">
+                                <option>转入</option>
+                                <option>转出</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group input-large date-picker input-daterange" data-date="2016/10/1" data-date-format="yyyy/mm/dd">
+                            <input type="text" class="form-control" name="from">
+                            <span class="input-group-addon">
+                                to
+                            </span>
+                            <input type="text" class="form-control" name="to">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-default pull-right"><i class="fa fa-search"></i>筛选</button>
+                </form>
+
+            </div>
+            <div class="marg-top-35">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                流水号
+                            </th>
+                            <th>
+                                时间
+                            </th>
+                            <th>
+                                交易类型
+                            </th>
+                            <th>
+                                金额
+                            </th>
+                            <th>
+                                余额
+                            </th>
+                            <th>
+                                备注
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                1
+                            </td>
+                            <td>
+                                Mark
+                            </td>
+                            <td>
+                                Otto
+                            </td>
+                            <td>
+                                makr124
+                            </td>
+                            <td>
+                                makr124
+                            </td>
+                            <td>
+                                <span class="label label-sm label-success">
+                                    Approved
+                                </span>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,142 @@
+﻿
+@{
+    ViewBag.Title = "产品列表页";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="pd-topbtn-10">
+                <i class="fa fa-home"></i>
+                <a href="/home/allcategory">
+                    精品服饰
+                </a>
+                <i class="fa fa-angle-right"></i>
+                <a href="#">
+                    女装
+                </a>
+            </div>                        
+        </div>
+    </div>    
+</div>
+
+<div ng-controller="hmh.goodslist">
+    <!--产品筛选条件-->
+    <div class="container">
+        <table class="table table-bordered table-condensed gofiltertable">
+            <tbody>
+                <tr ng-show="subcatisshow">
+                    <td class="filter-head" width="160">分类</td>
+                    <td>
+                        <div class="catlist">
+                            <a href="/Home/GoodsList?catid={{cat.Id}}" ng-repeat="cat in category.Children">{{cat.Name}}</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-repeat="attr in category.Attrs">
+                    <td class="filter-head" width="160">{{attr.Name}}</td>
+                    <td>
+                        <div class="catlist">
+                            <a href="javascript:;" ng-class="{active:isChecked(attr.Name,selectableValue)}" ng-click="checkAttr(attr.Name,selectableValue)" ng-repeat="selectableValue in attr.SelectableValues">{{selectableValue}} </a>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="filter-head" width="160">价格</td>
+                    <td>
+                        <div class="catlist">
+                            <a href="">小于10</a>
+                            <a href="">10~30</a>
+                            <a href="">40~50</a>
+                            <a href="">60~90</a>
+                            <a href="">大于100</a>
+                            <input type="number" class="wd-100" ng-model="postData.minPrice" placeholder="价格" /> ~ <input type="number" class="wd-100" ng-model="postData.maxPrice" placeholder="价格" /><button class="btn btn-xs btn-default marg-lf-10" ng-click="filterPrice()"><span class="fa fa-search"></span></button>
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-repeat="spec in category.GoodsSpecifications">
+                    <td class="filter-head" width="160">{{spec.Name}}</td>
+                    <td>
+                        <div class="catlist">
+                            <a href="javascript:;" ng-class="{active:isChecked2(spec.Name,selectableValue)}" ng-click="checkSpec(spec.Name,selectableValue)" ng-repeat="selectableValue in spec.SelectableValues">{{selectableValue}} </a>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>              
+    </div>
+
+    <!--排序-->
+    <div class="container marg-top-15">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="orderwarp">
+                    <div class="btn-group btn-group-sm">
+                        <button type="button" ng-class="{active:isChecked3('sortorder','desc')}" ng-click="checkSort('sortorder','desc')" class="btn btn-default">默认</button>
+                        <button type="button" ng-class="{active:isChecked3('sellcount','desc')}" ng-click="checkSort('sellcount','desc')" class="btn btn-default">销量 <i class="fa fa-sort-amount-desc"></i></button>
+                        <button type="button" ng-class="{active:isChecked3('price','asc')}" ng-click="checkSort('price','asc')" class="btn btn-default">价格 <i class="fa fa-sort-amount-asc"></i></button>
+                    </div>
+
+                    <div class="checkbox-list">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" ng-model="postData.isSelf" >自营
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" ng-model="postData.isExpressFree"> 包邮
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" ng-model="postData.isStock" > 仅显示有货
+                        </label>
+                    </div>
+                    <div class="page">
+                        1/100
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--产品列表-->
+    <div class="container marg-top-20">        
+        <div class="row goods-list">
+            <div class="col-xs-3" ng-repeat="goods in goodses">
+                <div class="goods-table">
+                    <div>
+                        <a href="/Home/GoodsInfo?id={{goods.Id}}"><img src="http://placehold.it/400x400" class="img-responsive" /></a>
+                        <div class="imgs">
+                            <img src="http://placehold.it/30x30" />
+                            <img src="http://placehold.it/30x30" />
+                            <img src="http://placehold.it/30x30" />
+                        </div>
+                    </div>
+                    <div class="desc">
+                        <a href="/Home/GoodsInfo?id={{goods.Id}}">{{goods.Name}}</a> <span class="pull-right">{{goods.SellCount}}人付款</span>
+                    </div>
+                    <div class="pd-10">
+                        <span class="fa fa-list text-green"></span> {{goods.ShopName}}
+                        <span class="pull-right">山东·日照</span>
+                    </div> 
+                    <div class="rate">
+                        <div class="price">
+                            <div class="currency ">                                
+                                ￥<br />
+                                <span class="label label-sm label-success">包邮</span>
+                            </div>
+                            <div class="amount ">
+                                {{goods.Price}} 
+                            </div>
+                        </div>                                               
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+    <div class="container">
+        <div class="text-center">
+            <hmh-pagination conf="paginationConf"></hmh-pagination>           
+        </div>
+    </div>
+</div>

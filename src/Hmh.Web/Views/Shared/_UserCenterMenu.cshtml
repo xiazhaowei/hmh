@@ -1,0 +1,38 @@
+﻿@{
+    Layout = null;
+}
+
+
+<div class="row usercentermenu">
+    <div class="text-center bg-white bd">
+        <div class="pd-10">
+            <img src="http://placehold.it/100x100" class="img-circle" />
+        </div>        
+        <p class="marg-top-10"><strong>@ViewBag.MyAccount.User.UserName</strong> <a href=""><i class="fa fa-edit"></i></a></p>
+        <p class="text-muted">xiazhaoweiii@126.com</p>
+        <div class="pd-15">
+            H消费限制：<span class="text-lg">200/800</span>
+            <p class="pd-top-15">
+                <form id="logoutForm2" action="/Account/logout" method="post">
+                    <a href="javascript:document.getElementById('logoutForm2').submit()" class="btn btn-sm btn-default">切换账号</a>
+                </form>                
+            </p>
+        </div>
+        <div>
+            <ul>
+                <li role="presentation" class="active"><a href="/account/editprofile"> 个人信息 </a></li>
+                <li role="presentation"><a href="/account/myorderlist">订单管理(0)</a></li>
+                <li role="presentation"><a href="/account/moneylog">资金管理</a></li>
+                <li role="presentation"><a href="/account/mycollect">收藏夹</a></li>
+                <li role="presentation"><a href="/account/invote">我的邀约ID</a></li>
+                <li role="presentation"><a href="/account/safecenter"> 账户安全 </a></li>
+                <li role="presentation"><a href="/account/mydeliveraddress"> 地址管理 </a></li>
+            </ul>
+        </div>
+        <div class="pd-15 bd-top">
+            <a href="">客服中心</a> | <a href="">投诉建议</a>
+        </div>
+    </div>    
+    
+
+</div>

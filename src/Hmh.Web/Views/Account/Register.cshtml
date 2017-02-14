@@ -1,0 +1,89 @@
+﻿@model Hmh.Core.Identity.Dtos.UserInputDto
+@{
+    ViewBag.Title = "注册";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container wd-900">
+    <h1>欢迎加入惠民汇商城</h1>
+    <h4>最好的创业平台，一起打造民族互联网，成就更多平凡人</h4>
+
+    <div class="marg-top-60" >
+        <div class="row">
+            <div class="col-xs-8">
+                <h3>创建个人账户</h3>
+                <form role="form" name="registerForm" data-ng-controller="hmh.account.register" ng-submit="register(registerInfo)" novalidate>
+                    <div class="form-group">
+                        <label class="control-label">用户名</label>
+                        <input type="text" class="form-control" data-hmh-unique="name" check-url="/account/checkname" name="UserName" data-ng-model="registerInfo.UserName" data-ng-model-options="{updateOn:'blur'}" required />
+                        <p class="text-red" ng-show="registerForm.UserName.$error.required && !registerForm.UserName.$pristine">请输入用户名</p>
+                        <p class="text-red" ng-show="registerForm.UserName.$error.unique && !registerForm.UserName.$pristine">用户名被占用</p>                       
+                        
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">您的邮箱</label>
+                        <input type="email" class="form-control" data-hmh-emailcomplate data-hmh-unique check-url="/account/checkemail" name="Email" autocomplete="off" data-ng-model="registerInfo.Email" data-ng-model-options="{updateOn:'blur'}" required />
+                        <p class="text-red" ng-show="registerForm.Email.$error.required && !registerForm.Email.$pristine">请输入您的邮箱</p>
+                        <p class="text-red" ng-show="registerForm.Email.$error.email && !registerForm.Email.$pristine">邮箱格式不正确</p>
+                        <p class="text-red" ng-show="registerForm.Email.$error.unique && !registerForm.Email.$pristine">邮箱已注册</p>
+                        <p class="help-block">您的邮箱将作为账户名登录，可用来找回密码</p>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">邮箱验证码</label>
+                        <div class="input-group" style="text-align:left">
+                            <input type="number" class="form-control"  name="EmailCode" data-ng-model="registerInfo.EmailCode" required />
+                            <span class="input-group-btn">
+                                <hmh-timerbutton  email-to="{{registerInfo.Email}}" post-url="/account/sendemailcode"></hmh-timerbutton>
+                            </span>                           
+                        </div>
+                        <p class="text-red" ng-show="registerForm.EmailCode.$error.required && !registerForm.EmailCode.$pristine">请输入验证码</p>
+                        <p class="help-block">登录到您的邮箱，输入我们给您发送邮件中的验证码</p>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">设置密码</label>
+                        <input type="password" name="Password" class="form-control" data-ng-model="registerInfo.Password" required />
+                        <p class="text-red" ng-show="registerForm.Password.$error.required && !registerForm.Password.$pristine">请输入密码</p>
+                        <p class="help-block">字母、数字或者英文符号，最短8位，区分大小写</p>
+                    </div>                    
+                    @if (Model.RecommendId > 1)
+                    {
+                        <div class="form-group input-group">
+                            <span class="input-group-addon">推广人ID</span>
+                            <input type="text" name="RecommendId" class="form-control" readonly="readonly" data-ng-model="registerInfo.RecommendId" />
+                        </div>
+                    }
+                    <hr />
+                    <div class="form-group">
+                        <p>点击创建账号按钮，表示您同意并认同 @Html.ActionLink("《惠民汇商城用户使用协议》", "Agreement")中的内容和条款。</p>
+                    </div>
+                    <hr />
+                    <div class="alert alert-danger" data-ng-show="inError">
+                        <span></span>
+                    </div> 
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success" ng-disabled="registerForm.$invalid">创建账号</button>
+                        <p class="pull-right">我已经有账户，@Html.ActionLink("现在登录", "Login")。</p>
+                    </div>
+                </form>
+            </div>
+            <div class="col-xs-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">您将喜欢上惠民汇商城</div>
+                    <div class="panel-body">
+
+                        <p>您是商城的主人</p>
+                        <p>100%无假货</p>
+                        <p>丰厚奖金</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pd-top-40">
+
+        </div>
+    </div>
+</div>
+
+
+

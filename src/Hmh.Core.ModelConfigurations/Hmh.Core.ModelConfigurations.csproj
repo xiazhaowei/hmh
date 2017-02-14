@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3156CC7A-5915-4787-A7DE-FD2539D6D9D5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Hmh.Core.ModelConfigurations</RootNamespace>
+    <AssemblyName>Hmh.Core.ModelConfigurations</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.Extended, Version=6.0.0.0, Culture=neutral, PublicKeyToken=05b7e29bdd433584, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.Extended.6.1.0.168\lib\net45\EntityFramework.Extended.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OSharp.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=e7429fb96767d50d, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\OSharp.Core.3.5.0-beta05\lib\net45\OSharp.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OSharp.Data.Entity, Version=3.0.0.0, Culture=neutral, PublicKeyToken=e7429fb96767d50d, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\OSharp.Data.Entity.3.5.0-beta05\lib\net45\OSharp.Data.Entity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OSharp.Permissions, Version=3.0.0.0, Culture=neutral, PublicKeyToken=e7429fb96767d50d, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\OSharp.Permissions.3.5.0-beta05\lib\net45\OSharp.Permissions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OSharp.Permissions.OAuth, Version=3.0.0.0, Culture=neutral, PublicKeyToken=e7429fb96767d50d, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\OSharp.Permissions.OAuth.3.5.0-beta05\lib\net45\OSharp.Permissions.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OSharp.Utility, Version=3.0.0.0, Culture=neutral, PublicKeyToken=e7429fb96767d50d, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\OSharp.Utility.3.5.0-beta05\lib\net40\OSharp.Utility.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\CreateDatabaseIfNotExistsWithSeed.cs" />
+    <Compile Include="Data\CreateDatabaseSeedAction.cs" />
+    <Compile Include="Goods\GoodsCommentConfiguration.cs" />
+    <Compile Include="Goods\GoodsColorSpecificationItemConfiguration.cs" />
+    <Compile Include="Goods\SearchKeyConfiguration.cs" />
+    <Compile Include="Goods\SkuConfiguration.cs" />
+    <Compile Include="Goods\ShowCategoryConfiguration.cs" />
+    <Compile Include="Goods\GoodsSpecificationConfiguration.cs" />
+    <Compile Include="Goods\GoodsAttrConfiguration.cs" />
+    <Compile Include="Goods\AttrConfiguration.cs" />
+    <Compile Include="Goods\GoodsConfiguration.cs" />
+    <Compile Include="Goods\CategoryConfiguration.cs" />
+    <Compile Include="Identity\DeliverAddressConfiguration.cs" />
+    <Compile Include="Identity\HCoinTransactionConfiguration.cs" />
+    <Compile Include="Identity\RoleConfiguration.generated.cs" />
+    <Compile Include="Identity\RmbCoinTransactionConfiguration.cs" />
+    <Compile Include="Identity\CollectConfiguration.cs" />
+    <Compile Include="Identity\UserBankCardConfiguration.cs" />
+    <Compile Include="Identity\UserConfiguration.cs" />
+    <Compile Include="Identity\UserClaimConfiguration.cs" />
+    <Compile Include="Identity\UserClaimConfiguration.generated.cs" />
+    <Compile Include="Identity\UserConfiguration.generated.cs" />
+    <Compile Include="Identity\UserExtendConfiguration.cs" />
+    <Compile Include="Identity\UserExtendConfiguration.generated.cs" />
+    <Compile Include="Identity\UserLoginConfiguration.cs" />
+    <Compile Include="Identity\UserLoginConfiguration.generated.cs" />
+    <Compile Include="Identity\UserRoleMapConfiguration.cs" />
+    <Compile Include="Identity\UserRoleMapConfiguration.generated.cs" />
+    <Compile Include="OAuth\OAuthClientConfiguration.generated.cs" />
+    <Compile Include="OAuth\OAuthClientRefreshTokenConfiguration.cs" />
+    <Compile Include="OAuth\OAuthClientRefreshTokenConfiguration.generated.cs" />
+    <Compile Include="OAuth\OAuthClientSecretConfiguration.cs" />
+    <Compile Include="OAuth\OAuthClientSecretConfiguration.generated.cs" />
+    <Compile Include="Order\CartGoodsConfiguration.cs" />
+    <Compile Include="Order\OrderExpressConfiguration.cs" />
+    <Compile Include="Order\OrderGoodsConfiguration.cs" />
+    <Compile Include="Order\OrderConfiguration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\EntityInfoConfiguration.cs" />
+    <Compile Include="Security\EntityRoleMapConfiguration.cs" />
+    <Compile Include="Security\EntityRoleMapConfiguration.generated.cs" />
+    <Compile Include="Security\EntityUserMapConfiguration.cs" />
+    <Compile Include="Security\EntityUserMapConfiguration.generated.cs" />
+    <Compile Include="Security\FunctionConfiguration.cs" />
+    <Compile Include="Security\FunctionUserMapConfiguration.cs" />
+    <Compile Include="Security\FunctionUserMapConfiguration.generated.cs" />
+    <Compile Include="Security\ModuleConfiguration.cs" />
+    <Compile Include="Security\ModuleConfiguration.generated.cs" />
+    <Compile Include="Settings\UserDistributionLevelConfiguration.cs" />
+    <Compile Include="Settings\ShopDistributionLevelConfiguration.cs" />
+    <Compile Include="Settings\SystemSettingConfiguration.cs" />
+    <Compile Include="Shop\ShopGoodsCategoryConfiguration.cs" />
+    <Compile Include="Shop\ExpressTemplateConfiguration.cs" />
+    <Compile Include="Shop\ContractPayConfiguration.cs" />
+    <Compile Include="Shop\AlbumConfiguration.cs" />
+    <Compile Include="Shop\ShopPermitConfiguration.cs" />
+    <Compile Include="Shop\ContractConfiguration.cs" />
+    <Compile Include="Shop\RegionConfigration.cs" />
+    <Compile Include="Shop\ContractLevelConfigration.cs" />
+    <Compile Include="Shop\ShopConfiguration.cs" />
+    <Compile Include="T4\ModelCodeScript1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4\Template\EntityConfigurationTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityConfigurationTemplate.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hmh.Core\Hmh.Core.csproj">
+      <Project>{5ec93af5-9a8d-4d7d-b54d-84f79608ceea}</Project>
+      <Name>Hmh.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="T4\ModelCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelCodeScript1.cs</LastGenOutput>
+    </Content>
+    <Content Include="T4\Template\EntityConfigurationTemplate.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EntityConfigurationTemplate.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

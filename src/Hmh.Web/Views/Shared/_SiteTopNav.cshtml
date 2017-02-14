@@ -1,0 +1,75 @@
+﻿@using Microsoft.AspNet.Identity
+@using Hmh.Core.Identity.Models
+
+@{
+    Layout = null;
+}
+
+<!--顶部导航-->
+<div class="site-nav">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-5">
+                <span class="site-by">打造民族互联网品牌，成就更多平凡人</span>
+            </div>
+            <div class="col-xs-7">
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <div class="site-nav-login">
+                        <a href="/account/login" class="btn yellow btn-xs">登录</a>
+                        <a href="/account/register" class="btn purple btn-xs">注册</a>
+                    </div>
+                }
+                else
+                {
+                    <ul class="nav nav-pills marg-rt-0">
+                        <li role="presentation" class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img class="img-circle" src="http://placehold.it/20x20" /> @ViewBag.MyAccount.User.UserName <i class="fa fa-align-justify"></i></a>
+                            <div class="dropdown-menu userdd-profile pull-right" role="menu">
+                                <div class="row pd-15">
+                                    <div class="col-xs-3">
+                                        <div class="text-center">
+                                            <img class="img-circle" src="http://placehold.it/50x50" />
+                                            <p><a href=""><i class="fa fa-camera"></i></a></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-9">
+                                        <form id="logoutForm" action="/Account/logout" method="post">
+                                            <p><strong>@ViewBag.MyAccount.User.UserName</strong> <a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-default btn-xs pd-lf-10 pd-rt-10">退出</a></p>
+                                            <p>@ViewBag.MyAccount.User.UserName <a href="/account/editprofile"><i class="fa fa-cog"></i></a></p>
+                                            <p class="text-sm">我的H币：@ViewBag.MyAccount.User.UserExtend.HCoin H，级别：</p>
+                                            <div class="marg-top-10">
+                                                <a href="/account/invote">我召唤的小伙伴</a><br />
+                                                <a href="/account/myorderlist">我的订单</a><br />
+                                                <a href="/account/moneylog">我的账户</a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="marg-top-10">
+                                    <a href="/account/myorderlist" class="btn btn-primary" style="width:33.33%">订单管理</a><a href="/shop/index" class="btn btn-info" style="width: 33.33%; ">我的店铺</a><a href="/cart/index" class="btn btn-success" style="width: 33.33%; ">购物车</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                }
+                <ul class="nav nav-pills">
+                    <li><a href=""><i class="fa fa-mobile"></i> 惠民汇App</a></li>
+                    <li role="presentation" class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >卖家中心 <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/shop/index">卖家中心</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/shop/openshop">我要开店</a></li>
+                            <li class="divider"></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/shop/myorderlist">待处理订单</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/shop/goodses">出售中的商品</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">在线客服</a></li>
+                    <li><a href="">帮助中心</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--顶部导航  end-->
